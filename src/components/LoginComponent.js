@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import '../assets/scss/LoginComponents.scss';
+import '../assets/scss/LoginComponent.scss';
 
-function LoginComponents({ getUsers }) {
+function LoginComponent({ getUsers }) {
 	const [inputs, setInputs] = useState({
 		id: '',
 		pw: ''
@@ -32,7 +32,7 @@ function LoginComponents({ getUsers }) {
 		});
 	};
 	return (
-		<div className="LoginComponents">
+		<div className="LoginComponent">
 			<form onSubmit={onSubmit}>
 				<input type="text" id="id" name="id" placeholder="아이디" value={id} onChange={onChange} />
 				<input type="password" id="pw" name="pw" placeholder="비밀번호" value={pw} onChange={onChange} />
@@ -42,4 +42,4 @@ function LoginComponents({ getUsers }) {
 	);
 }
 
-export default LoginComponents;
+export default LoginComponent;

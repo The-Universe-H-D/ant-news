@@ -1,9 +1,9 @@
-import LoginContainers from './containers/LoginContainers';
+import LoginContainer from './containers/LoginContainer';
 
 function App() {
 	return (
 		<div className="App">
-			<LoginContainers />
+			<LoginContainer />
 		</div>
 	);
 }

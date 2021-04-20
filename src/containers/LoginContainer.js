@@ -1,6 +1,6 @@
 import React from 'react';
 import users from '../api/loginAPI';
-import LoginComponent from '../components/LoginComponent';
+import LoginComponents from '../components/LoginComponent';
 
 const getUsers = () => {
 	try {
@@ -9,12 +9,12 @@ const getUsers = () => {
 		console.log(e);
 	}
 };
-function LoginContainer() {
+function LoginContainers() {
 	return (
 		<div>
-			<LoginComponent getUsers={getUsers} />
+			<LoginComponents getUsers={getUsers} />
 		</div>
 	);
 }
 
-export default LoginContainer;
+export default LoginContainers;
