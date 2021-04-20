@@ -1,6 +1,8 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
 import users from '../api/loginAPI';
 import LoginComponents from '../components/LoginComponent';
+import { userLoginThunk } from '../modules/login';
 
 const getUsers = () => {
 	try {
@@ -9,12 +11,17 @@ const getUsers = () => {
 		console.log(e);
 	}
 };
-function LoginContainers() {
+function LoginContainer() {
+	//const login = useSelector(state => state.login)
+	const dispatch = useDispatch();
+	const onSetLogin = () => {
+		dispatch(userLoginThunk());
+	};
 	return (
 		<div>
-			<LoginComponents getUsers={getUsers} />
+			<LoginComponents getUsers={getUsers} onSetLogin={onSetLogin} />
 		</div>
 	);
 }
 
-export default LoginContainers;
+export default LoginContainer;

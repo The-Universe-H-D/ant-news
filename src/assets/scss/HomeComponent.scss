@@ -1,0 +1,12 @@
+.login_btn_box,
+.logout_btn_box,
+.home_section {
+	display: flex;
+	align-items: center;
+	justify-content: flex-end;
+	padding: 0.5rem;
+}
+
+.home_section {
+	justify-content: center;
+}

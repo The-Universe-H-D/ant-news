@@ -1,9 +1,9 @@
-import LoginContainer from './containers/LoginContainer';
+import HomeComponent from './components/HomeComponent';
 
 function App() {
 	return (
 		<div className="App">
-			<LoginContainer />
+			<HomeComponent />
 		</div>
 	);
 }

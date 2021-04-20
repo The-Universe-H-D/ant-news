@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import '../assets/scss/LoginComponent.scss';
 
-function LoginComponent({ getUsers }) {
+function LoginComponent({ getUsers, onSetLogin }) {
 	const [inputs, setInputs] = useState({
 		id: '',
 		pw: ''
@@ -17,18 +17,18 @@ function LoginComponent({ getUsers }) {
 	const onSubmit = e => {
 		e.preventDefault();
 		const users = getUsers();
-		console.log(users);
 		users.forEach(user => {
 			if (user.userId === id) {
 				if (user.userPw === pw) {
-					console.log('로그인 되었습니다.');
+					onSetLogin();
+				} else {
+					console.log('비밀번호가 다릅니다.');
 					return;
 				}
-				console.log('비밀번호가 다릅니다.');
+			} else {
+				console.log('아이디가 다릅니다.');
 				return;
 			}
-			console.log('아이디가 다릅니다.');
-			return;
 		});
 	};
 	return (
