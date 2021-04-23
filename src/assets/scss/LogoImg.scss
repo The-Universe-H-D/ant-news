@@ -1,8 +1,13 @@
+@import './Common.scss';
+
 .LogoImg {
-	width: 7rem;
+	width: 5rem;
 	display: block;
 	margin-right: 1rem;
 	img {
 		width: 100%;
+	}
+	b {
+		color: $GrayBlack;
 	}
 }

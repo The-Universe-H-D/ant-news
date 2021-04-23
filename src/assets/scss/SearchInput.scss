@@ -1,8 +1,17 @@
+@import './Common.scss';
+
 .SearchInput {
 	padding: 1rem;
 	input {
 		margin-right: 1rem;
 		padding: 0.5rem;
 		width: 25rem;
+		border-radius: 5px;
+		border: 1px solid $GrayBlack;
+		font-size: 16px;
+		&:focus {
+			outline: none !important;
+			box-shadow: 0 0 10px $GrayBlack;
+		}
 	}
 }

@@ -6,6 +6,7 @@ function LogoImg() {
 	return (
 		<div className="LogoImg">
 			<img alt="logo" src={logo} />
+			<b>AntNEWS</b>
 		</div>
 	);
 }
