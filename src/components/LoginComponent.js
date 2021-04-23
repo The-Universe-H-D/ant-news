@@ -1,7 +1,11 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import '../assets/scss/LoginComponent.scss';
 
-function LoginComponent({ getUsers, onSetLogin }) {
+function LoginComponent({ onSetLogin, getUsers, history }) {
+	const idInput = useRef();
+	useEffect(() => {
+		idInput.current.focus();
+	}, []);
 	const [inputs, setInputs] = useState({
 		id: '',
 		pw: ''
@@ -21,6 +25,7 @@ function LoginComponent({ getUsers, onSetLogin }) {
 			if (user.userId === id) {
 				if (user.userPw === pw) {
 					onSetLogin();
+					history.push('/');
 				} else {
 					console.log('비밀번호가 다릅니다.');
 					return;
@@ -34,7 +39,15 @@ function LoginComponent({ getUsers, onSetLogin }) {
 	return (
 		<div className="LoginComponent">
 			<form onSubmit={onSubmit}>
-				<input type="text" id="id" name="id" placeholder="아이디" value={id} onChange={onChange} />
+				<input
+					type="text"
+					id="id"
+					name="id"
+					ref={idInput}
+					placeholder="아이디"
+					value={id}
+					onChange={onChange}
+				/>
 				<input type="password" id="pw" name="pw" placeholder="비밀번호" value={pw} onChange={onChange} />
 				<button type="submit">로그인</button>
 			</form>

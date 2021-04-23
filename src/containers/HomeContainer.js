@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import HomeComponent from '../components/HomeComponent';
 import { userLogoutThunk } from '../modules/login';
 
-function HomeContainer() {
+function HomeContainer({ history }) {
 	const loginState = useSelector(state => state.login.login);
 	const dispatch = useDispatch();
 	const onSetLogout = () => {
