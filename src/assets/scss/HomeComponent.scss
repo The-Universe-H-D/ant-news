@@ -1,3 +1,5 @@
+@import './Common.scss';
+
 .login_btn_box,
 .logout_btn_box,
 .home_section {
@@ -15,4 +17,22 @@
 .login_btn_box,
 .logout_btn_box {
 	padding: 1.5rem;
+}
+
+.login_btn_box {
+	button {
+		@include btn-style;
+		background: $white;
+		font-size: $fs-m;
+		img {
+			display: inline-block;
+			width: 1rem;
+			margin-right: 0.3rem;
+		}
+		&:hover {
+			span {
+				color: $white;
+			}
+		}
+	}
 }

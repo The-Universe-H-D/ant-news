@@ -1,19 +1,7 @@
 @import './Common.scss';
 
 .Button {
-	display: inline-block;
+	@include btn-style;
 	width: 4rem;
-	padding: 0.5rem;
-	text-align: center;
-	border: 1px solid $GrayBlack;
-	border-radius: 5px;
 	margin-right: 1rem;
-	transition: all 0.4s;
-	cursor: pointer;
-	color: $GrayBlack;
-
-	&:hover {
-		background-color: $GrayBlack;
-		color: white;
-	}
 }

@@ -7,11 +7,11 @@
 		padding: 0.5rem;
 		width: 25rem;
 		border-radius: 5px;
-		border: 1px solid $GrayBlack;
+		border: 1px solid $black;
 		font-size: 16px;
 		&:focus {
 			outline: none !important;
-			box-shadow: 0 0 10px $GrayBlack;
+			box-shadow: 0 0 10px $black;
 		}
 	}
 }
