@@ -1,10 +1,9 @@
 import React from 'react';
-import Button from './Button';
 import '../assets/scss/HomeComponent.scss';
 import LogoImg from './LogoImg';
 import SearchInput from './SearchInput';
 import { Link } from 'react-router-dom';
-import googleLogo from '../assets/img/google.png';
+import GoogleLogin from './GoogleLogin';
 
 function HomeComponent({ onSetLogout, loginState }) {
 	return (
@@ -13,10 +12,7 @@ function HomeComponent({ onSetLogout, loginState }) {
 				{!loginState ? (
 					<div className="login_btn_box">
 						<Link to="/login">
-							<button>
-								<img alt="google logo" url={googleLogo} />
-								<b>구글 이메일 로그인</b>
-							</button>
+							<GoogleLogin />
 						</Link>
 					</div>
 				) : (
