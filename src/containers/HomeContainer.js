@@ -11,7 +11,7 @@ function HomeContainer({ history }) {
 	};
 	return (
 		<div>
-			<HomeComponent onSetLogout={onSetLogout} loginState={loginState} />
+			<HomeComponent />
 		</div>
 	);
 }
