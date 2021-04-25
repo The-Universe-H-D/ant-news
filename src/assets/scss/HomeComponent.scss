@@ -1,38 +1,10 @@
 @import './Common.scss';
 
-.login_btn_box,
-.logout_btn_box,
 .home_section {
+	justify-content: center;
+	margin-top: 20%;
 	display: flex;
 	align-items: center;
 	justify-content: flex-end;
 	padding: 0.5rem;
-}
-
-.home_section {
-	justify-content: center;
-	margin-top: 20%;
-}
-
-.login_btn_box,
-.logout_btn_box {
-	padding: 1.5rem;
-}
-
-.login_btn_box {
-	button {
-		@include btn-style;
-		background: $white;
-		font-size: $fs-m;
-		img {
-			display: inline-block;
-			width: 1rem;
-			margin-right: 0.3rem;
-		}
-		&:hover {
-			span {
-				color: $white;
-			}
-		}
-	}
 }
