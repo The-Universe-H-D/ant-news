@@ -13,15 +13,14 @@ export const getApiAsync = (value, history) => async (dispatch, getState) => {
 		dispatch(getApi());
 		const data = await axios(`/News/list?symbol=${value}&count=10`);
 		dispatch(getApiSuccess(data));
-		history.push('/search');
 	} catch (e) {
 		dispatch(getApiError(e));
 	}
 };
 
-const initialState = {
+export const initialState = {
 	loading: false,
-	data: [],
+	data: null,
 	error: null
 };
 export default function getApiReducer(state = initialState, action) {
