@@ -1,13 +1,9 @@
 import React from 'react';
 import SearchInput from './SearchInput';
 import { Line } from 'react-chartjs-2';
-import Header from './Header';
 import '../assets/scss/SearchPage.scss';
-import { useSelector } from 'react-redux';
 
-function SearchPage({ onGetApi }) {
-	const { data } = useSelector(state => state.getApiReducer);
-
+function SearchPage({ onGetApi, newsList }) {
 	// const options = {
 	// 	legend: {
 	// 		display: false // label 보이기 여부
@@ -38,9 +34,9 @@ function SearchPage({ onGetApi }) {
 	// 		}
 	// 	]
 	// };
+
 	return (
 		<div className="SearchPage">
-			<Header />
 			<div className="container">
 				<nav className="nav">
 					<b className="nav-title">종목</b>
@@ -60,7 +56,7 @@ function SearchPage({ onGetApi }) {
 						</div>
 						<div className="news">
 							<ul>
-								{data.data.newsList.map(news => (
+								{newsList.map(news => (
 									<li key={news.id} id={news.id} style={{ margin: '1rem' }}>
 										<img alt="news thumbnail" src={news.thumbnail} style={{ width: '50px' }}></img>
 										{news.title}
