@@ -8,10 +8,10 @@ export const getApi = () => ({ type: GET_API });
 export const getApiSuccess = data => ({ type: GET_API_SUCCESS, data });
 export const getApiError = e => ({ type: GET_API_ERROR, e });
 
-export const getApiAsync = () => async (dispatch, getState) => {
+export const getApiAsync = value => async (dispatch, getState) => {
 	try {
 		dispatch(getApi());
-		const data = await axios('/News/list?symbol=005930.KS&count=10');
+		const data = await axios(`/News/list?symbol=${value}&count=10`);
 		dispatch(getApiSuccess(data));
 	} catch (e) {
 		dispatch(getApiError(e));
@@ -34,7 +34,7 @@ export default function getApiReducer(state = initialState, action) {
 			return {
 				...state,
 				loading: false,
-				data: state.data.concat(action.data)
+				data: action.data
 			};
 		case GET_API_ERROR:
 			return {

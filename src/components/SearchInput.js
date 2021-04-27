@@ -1,11 +1,19 @@
-import React from 'react';
+import React, { useState } from 'react';
 import '../assets/scss/SearchInput.scss';
 
 function SearchInput({ onGetApi }) {
+	const [value, setValue] = useState('');
+	const onChange = e => {
+		setValue(e.target.value);
+	};
+	const onSubmit = e => {
+		e.preventDefault();
+		onGetApi(value);
+	};
 	return (
 		<div className="SearchInput">
-			<form onSubmit={onGetApi}>
-				<input type="text" placeholder="검색어를 입력하세요. (예시) 삼성전자)" />
+			<form onSubmit={onSubmit}>
+				<input type="text" value={value} onChange={onChange} />
 				<button type="submit">검색</button>
 			</form>
 		</div>
