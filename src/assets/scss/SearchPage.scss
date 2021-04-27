@@ -1,0 +1,37 @@
+@import './Common.scss';
+
+.SearchPage {
+	.container {
+		.nav {
+			padding: 1rem;
+			width: 15%;
+			height: 10000px;
+			border-right: $b-gray;
+			position: fixed;
+			box-sizing: border-box;
+			.nav-title {
+				margin-bottom: 1rem;
+				display: inline-block;
+			}
+			.nav-list {
+				li {
+					margin-bottom: 0.5rem;
+					cursor: pointer;
+				}
+			}
+		}
+		.sec {
+			padding: 1rem;
+			width: 85%;
+			margin-left: 15%;
+			.sec-search {
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				.SearchInput {
+					display: inline-block;
+				}
+			}
+		}
+	}
+}

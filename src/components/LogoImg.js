@@ -1,12 +1,15 @@
 import React from 'react';
 import logo from '../assets/img/logo.jpg';
 import '../assets/scss/LogoImg.scss';
+import { Link } from 'react-router-dom';
 
 function LogoImg() {
 	return (
 		<div className="LogoImg">
-			<img alt="logo" src={logo} />
-			<b>AntNEWS</b>
+			<Link to="/">
+				<img alt="logo" src={logo} />
+				<b>AntNEWS</b>
+			</Link>
 		</div>
 	);
 }

@@ -2,6 +2,8 @@ import React from 'react';
 import LogoImg from './LogoImg';
 import SearchInput from './SearchInput';
 import { Line } from 'react-chartjs-2';
+import Header from './Header';
+import '../assets/scss/SearchPage.scss';
 
 function SearchPage() {
 	const options = {
@@ -36,25 +38,27 @@ function SearchPage() {
 	};
 	return (
 		<div className="SearchPage">
-			<nav>
-				<b>종목</b>
-				<ul>
-					<li>삼성전자</li>
-					<li>테슬라</li>
-					<li>카카오</li>
-				</ul>
-			</nav>
-			<section>
-				<div>
-					<LogoImg />
-					<SearchInput />
-				</div>
-				<div>
-					<div style={{ height: '400px', width: '80%', margin: 'auto' }}>
-						<Line data={data} options={options} height={300} />
+			<Header />
+			<div className="container">
+				<nav className="nav">
+					<b className="nav-title">종목</b>
+					<ul className="nav-list">
+						<li>삼성전자</li>
+						<li>테슬라</li>
+						<li>카카오</li>
+					</ul>
+				</nav>
+				<section className="sec">
+					<div className="sec-search">
+						<SearchInput />
 					</div>
-				</div>
-			</section>
+					<div className="sec-contents">
+						<div style={{ height: '400px', width: '80%', margin: 'auto' }}>
+							<Line data={data} options={options} height={300} />
+						</div>
+					</div>
+				</section>
+			</div>
 		</div>
 	);
 }

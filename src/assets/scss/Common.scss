@@ -7,11 +7,19 @@ $fs-s: 12px;
 $fs-m: 16px;
 $fs-l: 20px;
 
+//border
+$b-gray: 1px solid #e0e0e0;
+
 * {
 	padding: 0;
 	margin: 0;
 	color: $black;
 	text-decoration: none !important;
+}
+
+ul,
+li {
+	list-style: none;
 }
 
 @mixin btn-style {

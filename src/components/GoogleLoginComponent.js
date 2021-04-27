@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import { GoogleLogin, GoogleLogout } from 'react-google-login';
 
 function GoogleLoginComponent() {
-	const [loginState, setLoginState] = useState(false);
-	const userName = loginState ? window.sessionStorage.getItem('userName') : '';
+	const userName = window.sessionStorage.getItem('userName') ? window.sessionStorage.getItem('userName') : '';
+	const [loginState, setLoginState] = useState(userName ? true : false);
 	const onLoginSuccess = res => {
 		console.log(res);
 		window.sessionStorage.setItem('userName', res.gt.Te);
@@ -19,24 +19,26 @@ function GoogleLoginComponent() {
 	};
 	if (loginState)
 		return (
-			<>
-				<b>{userName}님 환영합니다.</b>
+			<div className="GoogleLoginComponent">
+				<b className="user-name">{userName}님 환영합니다.</b>
 				<GoogleLogout
 					clientId="379175647400-vb7hlqes9vi20lach33v4o8quihmaauc.apps.googleusercontent.com"
 					buttonText="Logout"
 					onLogoutSuccess={onLogoutSuccess}
 				/>
-			</>
+			</div>
 		);
 	if (!loginState)
 		return (
-			<GoogleLogin
-				clientId="379175647400-vb7hlqes9vi20lach33v4o8quihmaauc.apps.googleusercontent.com"
-				buttonText="Google Login"
-				onSuccess={onLoginSuccess}
-				onFailure={onLoginFailure}
-				cookiePolicy={'single_host_origin'}
-			/>
+			<div className="GoogleLoginComponent">
+				<GoogleLogin
+					clientId="379175647400-vb7hlqes9vi20lach33v4o8quihmaauc.apps.googleusercontent.com"
+					buttonText="Google Login"
+					onSuccess={onLoginSuccess}
+					onFailure={onLoginFailure}
+					cookiePolicy={'single_host_origin'}
+				/>
+			</div>
 		);
 }
 

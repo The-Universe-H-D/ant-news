@@ -1,0 +1,17 @@
+@import './Common.scss';
+
+header {
+	border-bottom: $b-gray;
+	display: flex;
+	.GoogleLoginComponent {
+		width: 100%;
+		display: inline-flex;
+		align-items: center;
+		justify-content: flex-end;
+		padding: 0.5rem;
+		box-sizing: border-box;
+		.user-name {
+			margin-right: 1rem;
+		}
+	}
+}
