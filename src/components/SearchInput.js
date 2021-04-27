@@ -1,16 +1,12 @@
 import React from 'react';
-import Button from './Button';
 import '../assets/scss/SearchInput.scss';
-import { Link } from 'react-router-dom';
 
-function SearchInput() {
+function SearchInput({ onGetApi }) {
 	return (
 		<div className="SearchInput">
-			<form>
+			<form onSubmit={onGetApi}>
 				<input type="text" placeholder="검색어를 입력하세요. (예시) 삼성전자)" />
-				<Link to="/search">
-					<Button>검색</Button>
-				</Link>
+				<button type="submit">검색</button>
 			</form>
 		</div>
 	);

@@ -3,12 +3,12 @@ import SearchInput from './SearchInput';
 import '../assets/scss/HomeComponent.scss';
 import Header from './Header';
 
-function HomeComponent() {
+function HomeComponent({ onGetApi }) {
 	return (
 		<div>
 			<Header />
 			<section className="home_section">
-				<SearchInput />
+				<SearchInput onGetApi={onGetApi} />
 			</section>
 		</div>
 	);

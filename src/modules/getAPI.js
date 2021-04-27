@@ -11,20 +11,18 @@ export const getApiError = e => ({ type: GET_API_ERROR, e });
 export const getApiAsync = () => async (dispatch, getState) => {
 	try {
 		dispatch(getApi());
-		const data = await axios('http://antnews.azurewebsites.net/News/list?symbol=005930.KS&count=10');
+		const data = await axios('/News/list?symbol=005930.KS&count=10');
 		dispatch(getApiSuccess(data));
 	} catch (e) {
 		dispatch(getApiError(e));
 	}
 };
 
-const initialState = [
-	{
-		loading: false,
-		data: [],
-		error: null
-	}
-];
+const initialState = {
+	loading: false,
+	data: [],
+	error: null
+};
 export default function getApiReducer(state = initialState, action) {
 	switch (action.type) {
 		case GET_API:
