@@ -5,8 +5,8 @@ import { getApiAsync } from '../modules/getAPI';
 
 function HomeContainer() {
 	const dispatch = useDispatch();
-	const onGetApi = value => {
-		dispatch(getApiAsync(value));
+	const onGetApi = (value, history) => {
+		dispatch(getApiAsync(value, history));
 	};
 	return (
 		<div>

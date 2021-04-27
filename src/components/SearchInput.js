@@ -1,14 +1,15 @@
 import React, { useState } from 'react';
+import { withRouter } from 'react-router';
 import '../assets/scss/SearchInput.scss';
 
-function SearchInput({ onGetApi }) {
+function SearchInput({ onGetApi, history }) {
 	const [value, setValue] = useState('');
 	const onChange = e => {
 		setValue(e.target.value);
 	};
 	const onSubmit = e => {
 		e.preventDefault();
-		onGetApi(value);
+		onGetApi(value, history);
 	};
 	return (
 		<div className="SearchInput">
@@ -20,4 +21,4 @@ function SearchInput({ onGetApi }) {
 	);
 }
 
-export default SearchInput;
+export default withRouter(SearchInput);

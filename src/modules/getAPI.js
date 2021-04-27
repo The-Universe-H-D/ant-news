@@ -8,11 +8,12 @@ export const getApi = () => ({ type: GET_API });
 export const getApiSuccess = data => ({ type: GET_API_SUCCESS, data });
 export const getApiError = e => ({ type: GET_API_ERROR, e });
 
-export const getApiAsync = value => async (dispatch, getState) => {
+export const getApiAsync = (value, history) => async (dispatch, getState) => {
 	try {
 		dispatch(getApi());
 		const data = await axios(`/News/list?symbol=${value}&count=10`);
 		dispatch(getApiSuccess(data));
+		history.push('/search');
 	} catch (e) {
 		dispatch(getApiError(e));
 	}
