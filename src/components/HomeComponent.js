@@ -1,5 +1,4 @@
 import React from 'react';
-import LogoImg from './LogoImg';
 import SearchInput from './SearchInput';
 import '../assets/scss/HomeComponent.scss';
 import Header from './Header';

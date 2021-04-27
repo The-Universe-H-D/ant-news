@@ -1,5 +1,4 @@
 import React from 'react';
-import LogoImg from './LogoImg';
 import SearchInput from './SearchInput';
 import { Line } from 'react-chartjs-2';
 import Header from './Header';
