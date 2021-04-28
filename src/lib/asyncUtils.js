@@ -1,12 +1,12 @@
 import axios from 'axios';
 
-export const createPromiseThunk = (type, promiseCreator) => {
+export const createPromiseThunk = (type, param) => {
 	const [SUCCESS, ERROR] = [`${type}_SUCCESS`, `${type}_ERROR`];
 
-	const thunkCreator = param => async dispatch => {
+	const thunkCreator = async dispatch => {
 		try {
 			dispatch({ type });
-			const payload = await promiseCreator;
+			const payload = await axios(param);
 			dispatch({
 				type: SUCCESS,
 				payload: payload
@@ -22,10 +22,6 @@ export const createPromiseThunk = (type, promiseCreator) => {
 	return thunkCreator;
 };
 
-export const promiseCreator = async param => {
-	return await axios(param);
-};
-
 export const handleAsyncActions = (type, key) => {
 	const [SUCCESS, ERROR] = [`${type}_SUCCESS`, `${type}_ERROR`];
 
@@ -33,7 +29,7 @@ export const handleAsyncActions = (type, key) => {
 		switch (action.type) {
 			case type:
 				return {
-					...state[key],
+					...state,
 					[key]: {
 						loading: true,
 						data: null,
@@ -42,7 +38,7 @@ export const handleAsyncActions = (type, key) => {
 				};
 			case SUCCESS:
 				return {
-					...state[key],
+					...state,
 					[key]: {
 						loading: false,
 						data: action.payload,
@@ -51,7 +47,7 @@ export const handleAsyncActions = (type, key) => {
 				};
 			case ERROR:
 				return {
-					...state[key],
+					...state,
 					[key]: {
 						loading: false,
 						data: null,
