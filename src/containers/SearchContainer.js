@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import SearchInput from '../components/SearchInput';
 import SearchPage from '../components/SearchPage';
-import { getApiAsync } from '../modules/getAPI';
+import { getNewsApiAsync, getStockApiAsync } from '../modules/getAPI';
 import initialState from '../modules/getAPI';
 
 function SearchContainer() {
@@ -10,7 +10,8 @@ function SearchContainer() {
 	const newsList = data ? data.data.newsList : [];
 	const dispatch = useDispatch();
 	const onGetApi = (value, history) => {
-		dispatch(getApiAsync(value, history));
+		dispatch(getNewsApiAsync(value));
+		dispatch(getStockApiAsync(value));
 	};
 
 	useEffect(() => {}, [data, loading]);
