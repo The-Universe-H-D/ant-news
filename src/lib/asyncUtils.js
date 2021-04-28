@@ -11,6 +11,20 @@ export const createPromiseThunk = (type, param) => {
 				type: SUCCESS,
 				payload: payload
 			});
+			if (SUCCESS === 'getAPI/GET_STOCK_CHART_SUCCESS') {
+				const { high, low } = payload.data;
+				const average = [];
+				const getAverage = () => {
+					for (let i = 0; i < high.length; i++) {
+						const result = (high[i] + low[i]) * 0.5;
+						average.push(result);
+					}
+					const averageFilter = average.filter(ele => ele !== 0);
+					payload.data.average = averageFilter;
+					console.log('average', averageFilter);
+				};
+				getAverage();
+			}
 		} catch (error) {
 			dispatch({
 				type: ERROR,

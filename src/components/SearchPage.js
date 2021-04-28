@@ -3,37 +3,60 @@ import SearchInput from './SearchInput';
 import { Line } from 'react-chartjs-2';
 import '../assets/scss/SearchPage.scss';
 
-function SearchPage({ onGetApi, newsList }) {
-	// const options = {
-	// 	legend: {
-	// 		display: false // label 보이기 여부
-	// 	},
-	// 	scales: {
-	// 		yAxes: [
-	// 			{
-	// 				ticks: {
-	// 					min: 0, // y축 스케일에 대한 최소값 설정
-	// 					stepSize: 1 // y축 그리드 한 칸당 수치
-	// 				}
-	// 			}
-	// 		]
-	// 	},
-
-	// 	// false : 사용자 정의 크기에 따라 그래프 크기가 결정됨.
-	// 	// true : 크기가 알아서 결정됨.
-	// 	maintainAspectRatio: false
-	// };
-	// const data = {
-	// 	// 각 막대별 라벨
-	// 	labels: ['1월', '2월', '3월'],
-	// 	datasets: [
-	// 		{
-	// 			borderWidth: 1, // 테두리 두께
-	// 			data: [80000, 85000, 90000], // 수치
-	// 			backgroundColor: ['blue'] // 각 막대 색
-	// 		}
-	// 	]
-	// };
+function SearchPage({ onGetApi, newsList, dateTime, average, dayLow, low, high }) {
+	const options = {
+		legend: {
+			display: true // label 보이기 여부
+		},
+		scales: {
+			y: [
+				{
+					ticks: {
+						suggestedMin: 50000,
+						suggestedMax: 100000
+					}
+				}
+			]
+		},
+		maintainAspectRatio: false
+	};
+	const sliceDateTime = dateTime.map(ele => ele.slice(8, 14));
+	const data = {
+		// 각 막대별 라벨
+		labels: sliceDateTime,
+		datasets: [
+			{
+				borderWidth: 1, // 테두리 두께
+				data: average, // 수치
+				label: 'Average',
+				fill: true,
+				backgroundColor: 'rgba(0,0,0,0)',
+				borderColor: 'rgba(0,0,0,0.8)',
+				pointBorderWidth: 0,
+				borderDash: [5]
+			},
+			{
+				borderWidth: 0.1, // 테두리 두께
+				data: low, // 수치
+				label: 'Low',
+				fill: true,
+				backgroundColor: 'rgba(75,192,192,0.7)',
+				borderColor: 'rgba(75,192,192,1)',
+				pointBorderWidth: 0,
+				pointBackgroundColor: 'rgba(0,0,0,0)'
+			},
+			{
+				borderWidth: 0.5, // 테두리 두께
+				data: high, // 수치
+				label: 'High',
+				fill: true,
+				backgroundColor: 'rgba(239, 0, 0, 0.2)',
+				borderColor: 'rgba(239, 0, 0, 1)',
+				pointBorderWidth: 0,
+				pointBackgroundColor: 'rgba(0,0,0,0)'
+			}
+		]
+	};
 
 	return (
 		<div className="SearchPage">
@@ -52,7 +75,7 @@ function SearchPage({ onGetApi, newsList }) {
 					</div>
 					<div className="sec-contents">
 						<div className="graph" style={{ height: '400px', width: '80%', margin: 'auto' }}>
-							{/* <Line data={data} options={options} height={300} /> */}
+							<Line data={data} options={options} height={300} />
 						</div>
 						<div className="news">
 							<ul>
