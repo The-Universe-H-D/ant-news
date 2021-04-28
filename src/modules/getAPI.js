@@ -21,22 +21,32 @@ export const getStockChart = value =>
 export const getStockSummary = value => createPromiseThunk(GET_STOCK_SUMMARY, `/Stock/summary?symbol=${value}`);
 
 export const initialState = {
-	stock: {
+	newsList: {
 		loading: false,
 		data: null,
 		error: null
 	},
-	news: {
+	newsDetail: {
+		loading: false,
+		data: null,
+		error: null
+	},
+	stockChart: {
+		loading: false,
+		data: null,
+		error: null
+	},
+	stockSummary: {
 		loading: false,
 		data: null,
 		error: null
 	}
 };
 
-const getNewsListReducer = handleAsyncActions(GET_NEWS_LIST, 'news');
-const getNewsDetailReducer = handleAsyncActions(GET_NEWS_DETAIL, 'news');
-const getStockChartReducer = handleAsyncActions(GET_STOCK_CHART, 'stock');
-const getStockSummaryReducer = handleAsyncActions(GET_STOCK_SUMMARY, 'stock');
+const getNewsListReducer = handleAsyncActions(GET_NEWS_LIST, 'newsList');
+const getNewsDetailReducer = handleAsyncActions(GET_NEWS_DETAIL, 'newsDetail');
+const getStockChartReducer = handleAsyncActions(GET_STOCK_CHART, 'stockChart');
+const getStockSummaryReducer = handleAsyncActions(GET_STOCK_SUMMARY, 'stockSummary');
 
 export default function getApiReducer(state = initialState, action) {
 	switch (action.type) {

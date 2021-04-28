@@ -6,20 +6,23 @@ import { getNewsList, getStockChart, getStockSummary } from '../modules/getAPI';
 import initialState from '../modules/getAPI';
 
 function SearchContainer() {
-	const { stock, news } = useSelector(state => state.getApiReducer || initialState);
-	const newsList = news.data ? news.data.data.newsList : [];
+	const { newsList, newsDetail, stockChart, stockSummary } = useSelector(
+		state => state.getApiReducer || initialState
+	);
+	const newsListData = newsList.data ? newsList.data.data.newsList : [];
 	const dispatch = useDispatch();
 	const onGetApi = value => {
+		console.log('value', value);
 		dispatch(getNewsList(value));
-		//dispatch(getStockChart(value));
-		//dispatch(getStockSummary(value));
+		dispatch(getStockChart(value));
+		dispatch(getStockSummary(value));
 	};
 
 	useEffect(() => {}, []);
 
-	if (news.loading || stock.loading)
+	if (newsList.loading || newsDetail.loading || stockChart.loading || stockSummary.loading)
 		return <div style={{ display: 'flex', marginTop: '15%', justifyContent: 'center' }}>로딩중...</div>;
-	if (!stock.data && !news.data)
+	if (!newsList.data && !newsDetail.data && !stockChart.data && !stockSummary.data)
 		return (
 			<div style={{ display: 'flex', marginTop: '15%', justifyContent: 'center' }}>
 				<SearchInput onGetApi={onGetApi} />
@@ -27,7 +30,7 @@ function SearchContainer() {
 		);
 	return (
 		<div>
-			<SearchPage onGetApi={onGetApi} newsList={newsList} />
+			<SearchPage onGetApi={onGetApi} newsList={newsListData} />
 		</div>
 	);
 }
