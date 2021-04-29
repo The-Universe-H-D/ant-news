@@ -1,0 +1,33 @@
+@import './Common.scss';
+
+.StockSummary {
+	display: flex;
+	width: 90%;
+	margin: auto;
+	padding: 2rem;
+	align-items: center;
+	justify-content: center;
+	.sum-1 {
+		margin-right: 2rem;
+	}
+	ul {
+		width: 50%;
+	}
+	ul li {
+		display: flex;
+		justify-content: space-between;
+	}
+}
+
+.stock-name {
+	width: 90%;
+	margin: auto;
+	padding: 1rem 2rem 0;
+	.name {
+		font-size: 2rem;
+		margin-right: 1rem;
+	}
+	.website {
+		cursor: pointer;
+	}
+}
