@@ -5,7 +5,7 @@ import NewsList from './NewsList';
 import Graph from './Graph';
 import StockSummary from './StockSummary';
 
-function SearchPage({ onGetApi, newsList, dateTime, average, low, high, summaryData, currency }) {
+function SearchPage({ onGetApi, dateTime, average, low, high, summaryData, currency, onGetNewsDetail }) {
 	return (
 		<div className="SearchPage">
 			<div className="container">
@@ -24,7 +24,7 @@ function SearchPage({ onGetApi, newsList, dateTime, average, low, high, summaryD
 					<div className="sec-contents">
 						<Graph average={average} dateTime={dateTime} low={low} high={high} currency={currency} />
 						<StockSummary summaryData={summaryData} />
-						<NewsList newsList={newsList} />
+						<NewsList onGetNewsDetail={onGetNewsDetail} />
 					</div>
 				</section>
 			</div>

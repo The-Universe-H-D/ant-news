@@ -15,7 +15,7 @@ const GET_STOCK_SUMMARY_SUCCESS = 'getAPI/GET_STOCK_SUMMARY_SUCCESS';
 const GET_STOCK_SUMMARY_ERROR = 'getAPI/GET_STOCK_SUMMARY_ERROR';
 
 export const getNewsList = value => createPromiseThunk(GET_NEWS_LIST, `/News/list?symbol=${value}&count=10`);
-export const getNewsDetail = value => createPromiseThunk(GET_NEWS_DETAIL, `/News/detail?id=${value}`);
+export const getNewsDetail = id => createPromiseThunk(GET_NEWS_DETAIL, `/News/detail?id=${id}`);
 export const getStockChart = value =>
 	createPromiseThunk(GET_STOCK_CHART, `/Stock/chart?symbol=${value}&range=1d&interval=5m`);
 export const getStockSummary = value => createPromiseThunk(GET_STOCK_SUMMARY, `/Stock/summary?symbol=${value}`);

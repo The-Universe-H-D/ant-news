@@ -6,7 +6,6 @@ function Graph({ dateTime, average, low, high, currency }) {
 	const sliceFromDateToDate = dateTime.filter(ele => ele !== 0);
 	sliceFromDateToDate.splice(1, sliceFromDateToDate.length - 2);
 	const sliceFromDateToDateFilter = sliceFromDateToDate.map(ele => ele.slice(0, 8));
-	console.log(sliceFromDateToDateFilter);
 	const options = {
 		legend: {
 			display: true // label 보이기 여부

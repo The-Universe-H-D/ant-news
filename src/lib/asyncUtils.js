@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-export const createPromiseThunk = (type, param) => {
+export const createPromiseThunk = (type, param, history) => {
 	const [SUCCESS, ERROR] = [`${type}_SUCCESS`, `${type}_ERROR`];
 
 	const thunkCreator = async dispatch => {
@@ -21,9 +21,12 @@ export const createPromiseThunk = (type, param) => {
 					}
 					const averageFilter = average.filter(ele => ele !== 0);
 					payload.data.average = averageFilter;
-					console.log('average', averageFilter);
 				};
 				getAverage();
+			}
+			if (SUCCESS === 'getAPI/GET_NEWS_DETAIL_SUCCESS') {
+				const { url } = payload.data;
+				window.open(url);
 			}
 		} catch (error) {
 			dispatch({
