@@ -1,18 +1,19 @@
 import React from 'react';
+import '../assets/scss/NewsList.scss';
 
 function NewsList({ newsList }) {
 	return (
-		<div>
-			<div className="news">
-				<ul>
-					{newsList.map(news => (
-						<li key={news.id} id={news.id} style={{ margin: '1rem' }}>
-							<img alt="news thumbnail" src={news.thumbnail} style={{ width: '50px' }}></img>
-							{news.title}
-						</li>
-					))}
-				</ul>
-			</div>
+		<div className="NewsList">
+			<ul>
+				{newsList.map(news => (
+					<li key={news.id} id={news.id} className="lists">
+						<img className="newsImg" alt="news thumbnail" src={news.thumbnail}></img>
+						<a className="links">
+							<span>{news.title}</span>
+						</a>
+					</li>
+				))}
+			</ul>
 		</div>
 	);
 }

@@ -1,0 +1,17 @@
+@import './Common.scss';
+
+.NewsList {
+	width: 90%;
+	margin: auto;
+	padding: 2rem;
+	.lists {
+		display: flex;
+		align-items: center;
+		margin-bottom: 1rem;
+		.newsImg {
+			width: 13%;
+			display: block;
+			margin-right: 1rem;
+		}
+	}
+}
