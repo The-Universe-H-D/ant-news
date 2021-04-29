@@ -15,7 +15,9 @@ function SearchInput({ onGetApi, history }) {
 		<div className="SearchInput">
 			<form onSubmit={onSubmit}>
 				<input type="text" value={value} onChange={onChange} />
-				<button type="submit">검색</button>
+				<button className="search-btn" type="submit">
+					검색
+				</button>
 			</form>
 		</div>
 	);

@@ -14,4 +14,12 @@
 			box-shadow: 0 0 10px $black;
 		}
 	}
+	.search-btn {
+		background-color: $white;
+		padding: 0.6rem;
+		border: 1px solid $black;
+		border-radius: 5px;
+		width: 50px;
+		cursor: pointer;
+	}
 }
