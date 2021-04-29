@@ -15,14 +15,12 @@ function SearchContainer() {
 		dispatch(getStockChart(value));
 		dispatch(getStockSummary(value));
 		dispatch(getNewsList(value));
-		console.log(dayLow);
 	};
 	const average = stockChart.data ? stockChart.data.data.average : [];
 	const dateTime = stockChart.data ? stockChart.data.data.datetime : [];
 	const low = stockChart.data ? stockChart.data.data.low : [];
 	const high = stockChart.data ? stockChart.data.data.high : [];
 	const newsListData = newsList.data ? newsList.data.data.newsList : [];
-	const dayLow = stockSummary.data ? stockSummary.data.data.dayLow : [];
 
 	if (newsList.loading || newsDetail.loading || stockChart.loading || stockSummary.loading)
 		return <div style={{ display: 'flex', marginTop: '15%', justifyContent: 'center' }}>로딩중...</div>;
@@ -39,7 +37,6 @@ function SearchContainer() {
 				newsList={newsListData}
 				average={average}
 				dateTime={dateTime}
-				dayLow={dayLow}
 				low={low}
 				high={high}
 			/>

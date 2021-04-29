@@ -3,7 +3,7 @@ import SearchInput from './SearchInput';
 import { Line } from 'react-chartjs-2';
 import '../assets/scss/SearchPage.scss';
 
-function SearchPage({ onGetApi, newsList, dateTime, average, dayLow, low, high }) {
+function SearchPage({ onGetApi, newsList, dateTime, average, low, high }) {
 	const options = {
 		legend: {
 			display: true // label 보이기 여부
@@ -12,8 +12,8 @@ function SearchPage({ onGetApi, newsList, dateTime, average, dayLow, low, high }
 			y: [
 				{
 					ticks: {
-						suggestedMin: 50000,
-						suggestedMax: 100000
+						suggestedMin: 0,
+						suggestedMax: 1000000
 					}
 				}
 			]
