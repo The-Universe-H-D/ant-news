@@ -32,6 +32,21 @@
 					display: inline-block;
 				}
 			}
+			.sec-contents {
+				.graph-date {
+					display: inline-block;
+					width: 90%;
+					margin: auto;
+					text-align: end;
+					font-size: 0.8rem;
+				}
+				.graph-currency {
+					font-size: 0.8rem;
+					display: inline-block;
+					width: 90%;
+					margin: auto;
+				}
+			}
 		}
 	}
 }

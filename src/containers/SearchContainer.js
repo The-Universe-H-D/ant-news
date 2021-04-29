@@ -17,6 +17,7 @@ function SearchContainer() {
 		dispatch(getNewsList(value));
 	};
 	const average = stockChart.data ? stockChart.data.data.average : [];
+	const currency = stockChart.data ? stockChart.data.data.currency : [];
 	const dateTime = stockChart.data ? stockChart.data.data.datetime : [];
 	const low = stockChart.data ? stockChart.data.data.low : [];
 	const high = stockChart.data ? stockChart.data.data.high : [];
@@ -41,6 +42,7 @@ function SearchContainer() {
 				low={low}
 				high={high}
 				summaryData={summaryData}
+				currency={currency}
 			/>
 		</div>
 	);

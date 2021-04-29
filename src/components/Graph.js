@@ -1,7 +1,12 @@
 import React from 'react';
 import { Line } from 'react-chartjs-2';
 
-function Graph({ dateTime, average, low, high }) {
+function Graph({ dateTime, average, low, high, currency }) {
+	const sliceDateTime = dateTime.map(ele => ele.slice(8, 14));
+	const sliceFromDateToDate = dateTime.filter(ele => ele !== 0);
+	sliceFromDateToDate.splice(1, sliceFromDateToDate.length - 2);
+	const sliceFromDateToDateFilter = sliceFromDateToDate.map(ele => ele.slice(0, 8));
+	console.log(sliceFromDateToDateFilter);
 	const options = {
 		legend: {
 			display: true // label 보이기 여부
@@ -18,7 +23,6 @@ function Graph({ dateTime, average, low, high }) {
 		},
 		maintainAspectRatio: false
 	};
-	const sliceDateTime = dateTime.map(ele => ele.slice(8, 14));
 	const data = {
 		// 각 막대별 라벨
 		labels: sliceDateTime,
@@ -57,9 +61,14 @@ function Graph({ dateTime, average, low, high }) {
 	};
 	return (
 		<div>
+			<span className="graph-currency">(단위: {currency})</span>
 			<div className="graph" style={{ height: '400px', width: '80%', margin: 'auto' }}>
 				<Line data={data} options={options} height={300} />
+				<span className="stock-date">{}</span>
 			</div>
+			<span className="graph-date">
+				{sliceFromDateToDateFilter[0]} ~ {sliceFromDateToDateFilter[1]}
+			</span>
 		</div>
 	);
 }
