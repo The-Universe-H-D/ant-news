@@ -3,6 +3,7 @@ import SearchInput from './SearchInput';
 import '../assets/scss/SearchPage.scss';
 import NewsList from './NewsList';
 import Graph from './Graph';
+import StockSummary from './StockSummary';
 
 function SearchPage({ onGetApi, newsList, dateTime, average, low, high }) {
 	return (
@@ -22,6 +23,7 @@ function SearchPage({ onGetApi, newsList, dateTime, average, low, high }) {
 					</div>
 					<div className="sec-contents">
 						<Graph average={average} dateTime={dateTime} low={low} high={high} />
+						<StockSummary />
 						<NewsList newsList={newsList} />
 					</div>
 				</section>
