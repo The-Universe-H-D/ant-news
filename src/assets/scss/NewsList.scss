@@ -4,14 +4,28 @@
 	width: 90%;
 	margin: auto;
 	padding: 2rem;
+	.news-title {
+		font-size: 2rem;
+		margin-bottom: 1rem;
+		display: inline-block;
+	}
 	.lists {
 		display: flex;
 		align-items: center;
 		margin-bottom: 1rem;
 		.newsImg {
-			width: 13%;
+			width: 10%;
 			display: block;
 			margin-right: 1rem;
+		}
+		.links {
+			.title {
+				font-weight: bold;
+				font-size: 1.2rem;
+			}
+			.date {
+				margin-right: 1rem;
+			}
 		}
 	}
 }
