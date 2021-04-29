@@ -2,6 +2,7 @@ import React from 'react';
 import SearchInput from './SearchInput';
 import { Line } from 'react-chartjs-2';
 import '../assets/scss/SearchPage.scss';
+import NewsList from './NewsList';
 
 function SearchPage({ onGetApi, newsList, dateTime, average, low, high }) {
 	const options = {
@@ -77,16 +78,7 @@ function SearchPage({ onGetApi, newsList, dateTime, average, low, high }) {
 						<div className="graph" style={{ height: '400px', width: '80%', margin: 'auto' }}>
 							<Line data={data} options={options} height={300} />
 						</div>
-						<div className="news">
-							<ul>
-								{newsList.map(news => (
-									<li key={news.id} id={news.id} style={{ margin: '1rem' }}>
-										<img alt="news thumbnail" src={news.thumbnail} style={{ width: '50px' }}></img>
-										{news.title}
-									</li>
-								))}
-							</ul>
-						</div>
+						<NewsList newsList={newsList} />
 					</div>
 				</section>
 			</div>
