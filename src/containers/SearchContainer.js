@@ -21,6 +21,7 @@ function SearchContainer() {
 	const low = stockChart.data ? stockChart.data.data.low : [];
 	const high = stockChart.data ? stockChart.data.data.high : [];
 	const newsListData = newsList.data ? newsList.data.data.newsList : [];
+	const summaryData = stockSummary.data ? stockSummary.data.data : [];
 
 	if (newsList.loading || newsDetail.loading || stockChart.loading || stockSummary.loading)
 		return <div style={{ display: 'flex', marginTop: '15%', justifyContent: 'center' }}>로딩중...</div>;
@@ -39,6 +40,7 @@ function SearchContainer() {
 				dateTime={dateTime}
 				low={low}
 				high={high}
+				summaryData={summaryData}
 			/>
 		</div>
 	);

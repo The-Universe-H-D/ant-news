@@ -1,74 +1,92 @@
 import React from 'react';
 
-function StockSummary() {
+function StockSummary({ summaryData }) {
+	const {
+		previousClose,
+		open,
+		bid,
+		ask,
+		dayRange,
+		yearRange,
+		volume,
+		averageVolume,
+		marketCapitalization,
+		beta5YMonthly,
+		priceEarningsRatio,
+		earningPerShare,
+		forwardDividendAndYield,
+		exdividendDate,
+		yearTargetEstimate,
+		earningDate
+	} = summaryData;
 	return (
 		<div>
 			<ul>
 				<li>
 					<span>Previous Close</span>
-					<b>{}</b>
+					<b>{previousClose || 'N/A'}</b>
 				</li>
 				<li>
 					<span>Open</span>
-					<b>{}</b>
+					<b>{open || 'N/A'}</b>
 				</li>
 				<li>
 					<span>Bid</span>
-					<b>{}</b>
+					<b>{bid || 'N/A'}</b>
 				</li>
 				<li>
 					<span>Ask</span>
-					<b>{}</b>
+					<b>{ask || 'N/A'}</b>
 				</li>
 				<li>
 					<span>Day's Range</span>
-					<b>{}</b>
+					<b>{dayRange || 'N/A'}</b>
 				</li>
 				<li>
 					<span>52 Week Range</span>
-					<b>{}</b>
+					<b>{yearRange || 'N/A'}</b>
 				</li>
 				<li>
 					<span>Volume</span>
-					<b>{}</b>
+					<b>{volume || 'N/A'}</b>
 				</li>
 				<li>
 					<span>Avg. Volume</span>
-					<b>{}</b>
+					<b>{averageVolume || 'N/A'}</b>
 				</li>
 			</ul>
 			<ul>
 				<li>
 					<span>Market Cap</span>
-					<b>{}</b>
+					<b>{marketCapitalization || 'N/A'}</b>
 				</li>
 				<li>
 					<span>Beta (5Y Monthly)</span>
-					<b>{}</b>
+					<b>{beta5YMonthly || 'N/A'}</b>
 				</li>
 				<li>
 					<span>PE Ratio (TTM)</span>
-					<b>{}</b>
+					<b>{priceEarningsRatio || 'N/A'}</b>
 				</li>
 				<li>
 					<span>EPS (TTM)</span>
-					<b>{}</b>
+					<b>{earningPerShare || 'N/A'}</b>
 				</li>
 				<li>
-					<span>Earnings Data</span>
-					<b>{}</b>
+					<span>Earnings Date</span>
+					<b>{earningDate || 'N/A'}</b>
 				</li>
 				<li>
 					<span>Forward Dividend &#38; Yield</span>
-					<b>{}</b>
+					<b>{forwardDividendAndYield || 'N/A'}</b>
 				</li>
 				<li>
 					<span>Ex-Dividend Date</span>
-					<b>{}</b>
+					<b>{exdividendDate || 'N/A'}</b>
 				</li>
 				<li>
 					<span>1y Target Est</span>
-					<b>{}</b>
+					<b>{yearTargetEstimate || 'N/A'}</b>
 				</li>
 			</ul>
 		</div>
