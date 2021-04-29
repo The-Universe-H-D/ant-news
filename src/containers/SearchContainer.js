@@ -32,7 +32,7 @@ function SearchContainer() {
 			</div>
 		);
 	return (
-		<div>
+		<div style={{ marginTop: '100px' }}>
 			<SearchPage
 				onGetApi={onGetApi}
 				newsList={newsListData}
