@@ -9,8 +9,14 @@ function SearchContainer() {
 	const { newsList, stockChart, stockSummary } = useSelector(state => state.getApiReducer || initialState);
 
 	const dispatch = useDispatch();
-	const onGetApi = value => {
-		dispatch(getStockChart(value));
+	const onGetApi = (value, range) => {
+		let interval = '1d';
+		if (range === '1d' || '5d') {
+			interval = '15m';
+		}
+		console.log(value, range, interval);
+
+		dispatch(getStockChart(value, interval, range));
 		dispatch(getStockSummary(value));
 		dispatch(getNewsList(value));
 	};
