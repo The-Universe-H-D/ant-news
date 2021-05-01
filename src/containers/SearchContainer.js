@@ -11,19 +11,28 @@ function SearchContainer() {
 	const dispatch = useDispatch();
 	const onGetApi = (value, range) => {
 		let interval = '1d';
-		if (range === '1d' || '5d') {
+		if (range === '1d' || range === '5d') {
 			interval = '15m';
 		}
-		console.log(value, range, interval);
-
-		dispatch(getStockChart(value, interval, range));
+		dispatch(getStockChart(value, range, interval));
 		dispatch(getStockSummary(value));
 		dispatch(getNewsList(value));
+	};
+	const onGetStockChart = (value, range) => {
+		let interval = '1d';
+		if (range === '1d' || range === '5d') {
+			interval = '15m';
+		}
+		if (!newsList.data && !stockChart.data && !stockSummary.data) {
+			dispatch(getStockChart(value, range, interval));
+			dispatch(getStockSummary(value));
+			dispatch(getNewsList(value));
+		}
+		dispatch(getStockChart(value, range, interval));
 	};
 	const onGetNewsDetail = async id => {
 		dispatch(getNewsDetail(id));
 	};
-	const average = stockChart.data ? stockChart.data.data.average : [];
 	const currency = stockChart.data ? stockChart.data.data.currency : [];
 	const dateTime = stockChart.data ? stockChart.data.data.datetime : [];
 	const low = stockChart.data ? stockChart.data.data.low : [];
@@ -35,7 +44,7 @@ function SearchContainer() {
 	if (!newsList.data && !stockChart.data && !stockSummary.data)
 		return (
 			<div style={{ display: 'flex', marginTop: '15%', justifyContent: 'center' }}>
-				<SearchInput onGetApi={onGetApi} />
+				<SearchInput onGetApi={onGetApi} onGetStockChart={onGetStockChart} />
 			</div>
 		);
 	return (
@@ -43,7 +52,7 @@ function SearchContainer() {
 			<SearchPage
 				onGetApi={onGetApi}
 				onGetNewsDetail={onGetNewsDetail}
-				average={average}
+				onGetStockChart={onGetStockChart}
 				dateTime={dateTime}
 				low={low}
 				high={high}
