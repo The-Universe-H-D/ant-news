@@ -1,40 +1,62 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import '../assets/scss/SearchInput.scss';
 
-function SearchInput({ onGetApi }) {
-	const [input, setInput] = useState('');
-	const [range, setRange] = useState('1d');
+function SearchInput({ onGetApi, onGetStockChart }) {
+	const [input, setInput] = useState(' ');
 	const onChangeInput = e => {
 		setInput(e.target.value);
-	};
-	const onChangeSelect = e => {
-		setRange(e.target.value);
+		localStorage.setItem('inputValue', input);
 	};
 	const onSubmit = e => {
 		e.preventDefault();
-		onGetApi(input, range);
+		onGetApi(input, '1d');
 	};
+	const onClick = e => {
+		const range = e.target.value;
+		onGetStockChart(input, range);
+	};
+	useEffect(() => {
+		setInput(localStorage.getItem('inputValue'));
+	}, []);
 	return (
 		<div className="SearchInput">
 			<form onSubmit={onSubmit}>
 				<input type="text" value={input} onChange={onChangeInput} />
-				<select name="range" value={range} onChange={onChangeSelect}>
-					<option value="1d" defaultValue>
-						1 day
-					</option>
-					<option value="5d">5 day</option>
-					<option value="1mo">1 month</option>
-					<option value="3mo">3 month</option>
-					<option value="6mo">6 month</option>
-					<option value="1y">1 year</option>
-					<option value="2y">2 year</option>
-					<option value="5y">5 year</option>
-					<option value="10y">10 year</option>
-					<option value="max">max</option>
-				</select>
 				<button className="search-btn" type="submit">
 					검색
 				</button>
+				<div style={true ? { display: 'block' } : { display: 'none' }}>
+					<button type="button" onClick={onClick} value="1d">
+						1 day
+					</button>
+					<button type="button" onClick={onClick} value="5d">
+						5 day
+					</button>
+					<button type="button" onClick={onClick} value="1mo">
+						1 month
+					</button>
+					<button type="button" onClick={onClick} value="3mo">
+						3 month
+					</button>
+					<button type="button" onClick={onClick} value="6mo">
+						6 month
+					</button>
+					<button type="button" onClick={onClick} value="1y">
+						1 year
+					</button>
+					<button type="button" onClick={onClick} value="2y">
+						2 year
+					</button>
+					<button type="button" onClick={onClick} value="5y">
+						5 year
+					</button>
+					<button type="button" onClick={onClick} value="10y">
+						10 year
+					</button>
+					<button type="button" onClick={onClick} value="max">
+						max
+					</button>
+				</div>
 			</form>
 		</div>
 	);
