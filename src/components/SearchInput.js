@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useRef, useState } from 'react';
 import '../assets/scss/SearchInput.scss';
+import AutoComplete from './AutoComplete';
 
 function SearchInput({ onGetApi, onSetXAxis }) {
 	const [input, setInput] = useState('');
@@ -13,7 +14,6 @@ function SearchInput({ onGetApi, onSetXAxis }) {
 		try {
 			const res = await axios(`/Stock/search?keyword=${targetValue}`);
 			setItems(res.data.stockCodes);
-			console.log(items);
 		} catch (e) {
 			console.log(e);
 		}
@@ -48,13 +48,7 @@ function SearchInput({ onGetApi, onSetXAxis }) {
 				<button className="search-btn" type="submit">
 					검색
 				</button>
-				<ul>
-					{items.map(item => (
-						<li key={item.symbol} onClick={() => onlistClick(item.longname, item.symbol)}>
-							{item.longname} - {item.exchange}
-						</li>
-					))}
-				</ul>
+				<AutoComplete items={items} onlistClick={onlistClick} />
 				<div style={true ? { display: 'block' } : { display: 'none' }}>
 					<button type="button" onClick={onClick} value="1d">
 						1 day
