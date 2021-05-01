@@ -37,6 +37,7 @@ function SearchInput({ onGetApi, onSetXAxis }) {
 		setSymbol(val2);
 		valueInput.current.focus();
 		localStorage.setItem('inputValue', val1);
+		setItems([]);
 	};
 	useEffect(() => {
 		//setInput(localStorage.getItem('inputValue'));
@@ -49,7 +50,7 @@ function SearchInput({ onGetApi, onSetXAxis }) {
 					검색
 				</button>
 				<AutoComplete items={items} onlistClick={onlistClick} />
-				<div style={true ? { display: 'block' } : { display: 'none' }}>
+				<div className="rangeBtns">
 					<button type="button" onClick={onClick} value="1d">
 						1 day
 					</button>

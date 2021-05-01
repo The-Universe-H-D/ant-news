@@ -22,4 +22,13 @@
 		width: 50px;
 		cursor: pointer;
 	}
+	.rangeBtns {
+		button {
+			@include btn-style;
+			width: 4rem;
+			margin-right: 0.2rem;
+			margin-top: 1rem;
+			font-size: 9px;
+		}
+	}
 }
