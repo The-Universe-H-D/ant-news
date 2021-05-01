@@ -1,18 +1,16 @@
 @import './Common.scss';
 
 .LogoImg {
-	a {
-		display: inline-flex;
-		justify-content: center;
-		align-items: center;
-	}
+	display: inline-flex;
+	justify-content: center;
+	align-items: center;
 	padding: 0.5rem;
-	img {
+	.img {
 		width: 5rem;
 		display: inline-block;
 		margin-right: 0.5rem;
 	}
-	b {
+	.title {
 		color: $black;
 		display: inline-block;
 		font-size: 3rem;

@@ -5,8 +5,8 @@ import '../assets/scss/LogoImg.scss';
 function LogoImg() {
 	return (
 		<div className="LogoImg">
-			<img alt="logo" src={logo} />
-			<b>AntNEWS</b>
+			<img className="img" alt="logo" src={logo} />
+			<b className="title">AntNEWS</b>
 		</div>
 	);
 }
