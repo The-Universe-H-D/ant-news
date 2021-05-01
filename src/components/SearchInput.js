@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import '../assets/scss/SearchInput.scss';
 
-function SearchInput({ onGetApi }) {
+function SearchInput({ onGetApi, onSetXAxis }) {
 	const [input, setInput] = useState(' ');
 	const onChangeInput = e => {
 		setInput(e.target.value);
@@ -14,6 +14,11 @@ function SearchInput({ onGetApi }) {
 	const onClick = e => {
 		const range = e.target.value;
 		onGetApi(input, range);
+		if (range === '1d' || range === '5d') {
+			onSetXAxis('true');
+		} else {
+			onSetXAxis('false');
+		}
 	};
 	useEffect(() => {
 		setInput(localStorage.getItem('inputValue'));

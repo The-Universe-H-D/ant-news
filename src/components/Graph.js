@@ -1,31 +1,20 @@
 import React, { useEffect } from 'react';
 import { Line } from 'react-chartjs-2';
-import { useSelector } from 'react-redux';
-import { initialState } from '../modules/getAPI';
 
-function Graph({ dateTime, low, high, currency }) {
-	const { minTime } = useSelector(state => state.getApiReducer || initialState);
-
-	let sliceDateTime = [];
-	let filterFromDateToDate = [];
-	if (minTime) {
-		sliceDateTime = dateTime.map(ele => ele.slice(8, 14));
-		filterFromDateToDate = dateTime.filter(ele => ele !== 0);
-		filterFromDateToDate.splice(1, filterFromDateToDate.length - 2);
-	}
-	if (!minTime) {
-		sliceDateTime = dateTime.map(ele => ele.slice(0, 8));
-	}
-
-	const sliceFromDateToDateFilter = filterFromDateToDate.map(ele => ele.slice(0, 8));
-	const average = [];
-	const getAverage = () => {
+function Graph({ dateTime, currency, low, high, XAxisDate }) {
+	console.log(XAxisDate);
+	const xDate = dateTime.map(ele => ele.slice(0, 8));
+	const xTime = dateTime.map(ele => ele.slice(8, 14));
+	const calculatedAve = [];
+	const calculateAverage = () => {
 		for (let i = 0; i < high.length; i++) {
-			const result = (high[i] + low[i]) * 0.5;
-			average.push(result);
+			calculatedAve.push((high[i] + low[i]) * 0.5);
 		}
-		return average.map(ele => ele !== 0);
 	};
+	useEffect(() => {
+		calculateAverage();
+	});
+
 	const options = {
 		legend: {
 			display: true // label 보이기 여부
@@ -44,11 +33,11 @@ function Graph({ dateTime, low, high, currency }) {
 	};
 	const data = {
 		// 각 막대별 라벨
-		labels: sliceDateTime,
+		labels: XAxisDate === 'true' ? xTime : xDate,
 		datasets: [
 			{
 				borderWidth: 1, // 테두리 두께
-				data: average, // 수치
+				data: calculatedAve, // 수치
 				label: 'Average',
 				fill: true,
 				backgroundColor: 'rgba(0,0,0,0)',
@@ -79,22 +68,17 @@ function Graph({ dateTime, low, high, currency }) {
 		]
 	};
 
-	useEffect(() => {
-		getAverage();
-	});
-
-	if (average === [])
+	if (calculatedAve === [] || xDate === [])
 		return <div style={{ display: 'flex', marginTop: '15%', justifyContent: 'center' }}>로딩중...</div>;
 	return (
 		<div>
 			<span className="graph-currency">(단위: {currency})</span>
 			<div className="graph" style={{ height: '400px', width: '80%', margin: 'auto' }}>
 				<Line data={data} options={options} height={300} />
-				<span className="stock-date">{}</span>
 			</div>
-			<span className="graph-date">
+			{/* <span className="graph-date">
 				기간: {sliceFromDateToDateFilter[0]} ~ {sliceFromDateToDateFilter[1]}
-			</span>
+			</span> */}
 		</div>
 	);
 }
