@@ -1,11 +1,31 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Line } from 'react-chartjs-2';
+import { useSelector } from 'react-redux';
+import { initialState } from '../modules/getAPI';
 
-function Graph({ dateTime, average, low, high, currency }) {
-	const sliceDateTime = dateTime.map(ele => ele.slice(8, 14));
-	const sliceFromDateToDate = dateTime.filter(ele => ele !== 0);
-	sliceFromDateToDate.splice(1, sliceFromDateToDate.length - 2);
-	const sliceFromDateToDateFilter = sliceFromDateToDate.map(ele => ele.slice(0, 8));
+function Graph({ dateTime, low, high, currency }) {
+	const { minTime } = useSelector(state => state.getApiReducer || initialState);
+
+	let sliceDateTime = [];
+	let filterFromDateToDate = [];
+	if (minTime) {
+		sliceDateTime = dateTime.map(ele => ele.slice(8, 14));
+		filterFromDateToDate = dateTime.filter(ele => ele !== 0);
+		filterFromDateToDate.splice(1, filterFromDateToDate.length - 2);
+	}
+	if (!minTime) {
+		sliceDateTime = dateTime.map(ele => ele.slice(0, 8));
+	}
+
+	const sliceFromDateToDateFilter = filterFromDateToDate.map(ele => ele.slice(0, 8));
+	const average = [];
+	const getAverage = () => {
+		for (let i = 0; i < high.length; i++) {
+			const result = (high[i] + low[i]) * 0.5;
+			average.push(result);
+		}
+		return average.map(ele => ele !== 0);
+	};
 	const options = {
 		legend: {
 			display: true // label 보이기 여부
@@ -58,6 +78,13 @@ function Graph({ dateTime, average, low, high, currency }) {
 			}
 		]
 	};
+
+	useEffect(() => {
+		getAverage();
+	});
+
+	if (average === [])
+		return <div style={{ display: 'flex', marginTop: '15%', justifyContent: 'center' }}>로딩중...</div>;
 	return (
 		<div>
 			<span className="graph-currency">(단위: {currency})</span>
@@ -66,7 +93,7 @@ function Graph({ dateTime, average, low, high, currency }) {
 				<span className="stock-date">{}</span>
 			</div>
 			<span className="graph-date">
-				{sliceFromDateToDateFilter[0]} ~ {sliceFromDateToDateFilter[1]}
+				기간: {sliceFromDateToDateFilter[0]} ~ {sliceFromDateToDateFilter[1]}
 			</span>
 		</div>
 	);
