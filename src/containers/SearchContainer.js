@@ -14,15 +14,6 @@ function SearchContainer() {
 		if (range === '1d' || range === '5d') {
 			interval = '15m';
 		}
-		dispatch(getStockChart(value, range, interval));
-		dispatch(getStockSummary(value));
-		dispatch(getNewsList(value));
-	};
-	const onGetStockChart = (value, range) => {
-		let interval = '1d';
-		if (range === '1d' || range === '5d') {
-			interval = '15m';
-		}
 		if (!newsList.data && !stockChart.data && !stockSummary.data) {
 			dispatch(getStockChart(value, range, interval));
 			dispatch(getStockSummary(value));
@@ -44,7 +35,7 @@ function SearchContainer() {
 	if (!newsList.data && !stockChart.data && !stockSummary.data)
 		return (
 			<div style={{ display: 'flex', marginTop: '15%', justifyContent: 'center' }}>
-				<SearchInput onGetApi={onGetApi} onGetStockChart={onGetStockChart} />
+				<SearchInput onGetApi={onGetApi} />
 			</div>
 		);
 	return (
@@ -52,7 +43,6 @@ function SearchContainer() {
 			<SearchPage
 				onGetApi={onGetApi}
 				onGetNewsDetail={onGetNewsDetail}
-				onGetStockChart={onGetStockChart}
 				dateTime={dateTime}
 				low={low}
 				high={high}

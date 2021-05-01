@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import '../assets/scss/SearchInput.scss';
 
-function SearchInput({ onGetApi, onGetStockChart }) {
+function SearchInput({ onGetApi }) {
 	const [input, setInput] = useState(' ');
 	const onChangeInput = e => {
 		setInput(e.target.value);
@@ -13,7 +13,7 @@ function SearchInput({ onGetApi, onGetStockChart }) {
 	};
 	const onClick = e => {
 		const range = e.target.value;
-		onGetStockChart(input, range);
+		onGetApi(input, range);
 	};
 	useEffect(() => {
 		setInput(localStorage.getItem('inputValue'));
