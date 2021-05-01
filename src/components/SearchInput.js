@@ -7,15 +7,27 @@ function SearchInput({ onGetApi, onSetXAxis }) {
 	const [input, setInput] = useState('');
 	const [items, setItems] = useState([]);
 	const [symbol, setSymbol] = useState('');
-	const onChangeInput = async e => {
+
+	const onChangeInput = e => {
 		const targetValue = e.target.value;
 		setInput(targetValue);
-		setSymbol(targetValue);
-		try {
-			const res = await axios(`/Stock/search?keyword=${targetValue}`);
-			setItems(res.data.stockCodes);
-		} catch (e) {
-			console.log(e);
+	};
+
+	const onKeyUp = async e => {
+		const targetValue = e.target.value;
+		if (targetValue !== '') {
+			try {
+				await axios.get(`/Stock/search?keyword=${targetValue}`).then(function (res) {
+					if (res.status === 200) {
+						setSymbol(res.data.stockCodes[0].symbol);
+						localStorage.setItem('inputValue', res.data.stockCodes[0].longname);
+						localStorage.setItem('symbolValue', res.data.stockCodes[0].symbol);
+						setItems(res.data.stockCodes);
+					}
+				});
+			} catch (e) {
+				console.log(e);
+			}
 		}
 	};
 	const onSubmit = e => {
@@ -37,15 +49,17 @@ function SearchInput({ onGetApi, onSetXAxis }) {
 		setSymbol(val2);
 		valueInput.current.focus();
 		localStorage.setItem('inputValue', val1);
+		localStorage.setItem('symbolValue', val2);
 		setItems([]);
 	};
 	useEffect(() => {
-		//setInput(localStorage.getItem('inputValue'));
+		setInput(localStorage.getItem('inputValue'));
+		setSymbol(localStorage.getItem('symbolValue'));
 	}, []);
 	return (
 		<div className="SearchInput">
 			<form onSubmit={onSubmit}>
-				<input value={input} onChange={onChangeInput} ref={valueInput} />
+				<input value={input} onChange={onChangeInput} onKeyUp={onKeyUp} ref={valueInput} />
 				<button className="search-btn" type="submit">
 					검색
 				</button>

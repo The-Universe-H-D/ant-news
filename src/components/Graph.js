@@ -2,7 +2,6 @@ import React, { useEffect } from 'react';
 import { Line } from 'react-chartjs-2';
 
 function Graph({ dateTime, currency, low, high, XAxisDate }) {
-	console.log(XAxisDate);
 	const xDate = dateTime.map(ele => ele.slice(0, 8));
 	const xTime = dateTime.map(ele => ele.slice(8, 14));
 	const calculatedAve = [];
