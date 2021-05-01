@@ -29,7 +29,6 @@ function SearchContainer() {
 		dispatch(getNewsDetail(id));
 	};
 	const onSetXAxis = value => {
-		console.log(value);
 		dispatch(setXAxisAsync(value));
 	};
 
