@@ -6,7 +6,6 @@ import AutoComplete from './AutoComplete';
 function SearchInput({ onGetApi, onSetXAxis }) {
 	const [input, setInput] = useState('');
 	const [items, setItems] = useState([]);
-	const [symbol, setSymbol] = useState('');
 
 	const onChangeInput = e => {
 		const targetValue = e.target.value;
@@ -18,7 +17,6 @@ function SearchInput({ onGetApi, onSetXAxis }) {
 			try {
 				await axios.get(`/Stock/search?keyword=${input}`).then(function (res) {
 					if (res.status === 200) {
-						setSymbol(res.data.stockCodes[0].symbol);
 						localStorage.setItem('inputValue', res.data.stockCodes[0].longname);
 						localStorage.setItem('symbolValue', res.data.stockCodes[0].symbol);
 						setItems(res.data.stockCodes);
@@ -31,11 +29,11 @@ function SearchInput({ onGetApi, onSetXAxis }) {
 	};
 	const onSubmit = e => {
 		e.preventDefault();
-		onGetApi(symbol, '1d');
+		onGetApi(localStorage.getItem('symbolValue'), '1d');
 	};
 	const onClick = e => {
 		const range = e.target.value;
-		onGetApi(symbol, range);
+		onGetApi(localStorage.getItem('symbolValue'), range);
 		if (range === '1d' || range === '5d') {
 			onSetXAxis('true');
 		} else {
@@ -45,7 +43,6 @@ function SearchInput({ onGetApi, onSetXAxis }) {
 	const valueInput = useRef();
 	const onlistClick = (val1, val2) => {
 		setInput(val1);
-		setSymbol(val2);
 		valueInput.current.focus();
 		localStorage.setItem('inputValue', val1);
 		localStorage.setItem('symbolValue', val2);
