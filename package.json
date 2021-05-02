@@ -47,5 +47,6 @@
 			"last 1 safari version"
 		]
 	},
-	"proxy": "http://antnews.azurewebsites.net"
+	"proxy": [],
+	"homepage": "http://parkhn.dothome.co.kr/build/"
 }
