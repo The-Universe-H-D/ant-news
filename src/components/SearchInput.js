@@ -15,7 +15,7 @@ function SearchInput({ onGetApi, onSetXAxis }) {
 	const onAutoComplete = async input => {
 		if (input !== '') {
 			try {
-				await axios.get(`/Stock/search?keyword=${input}`).then(function (res) {
+				await axios.get(`http://antnews.azurewebsites.net/Stock/search?keyword=${input}`).then(function (res) {
 					if (res.status === 200) {
 						localStorage.setItem('inputValue', res.data.stockCodes[0].longname);
 						localStorage.setItem('symbolValue', res.data.stockCodes[0].symbol);

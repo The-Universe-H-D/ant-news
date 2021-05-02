@@ -14,11 +14,17 @@ const GET_STOCK_SUMMARY = 'getAPI/GET_STOCK_SUMMARY';
 const GET_STOCK_SUMMARY_SUCCESS = 'getAPI/GET_STOCK_SUMMARY_SUCCESS';
 const GET_STOCK_SUMMARY_ERROR = 'getAPI/GET_STOCK_SUMMARY_ERROR';
 
-export const getNewsList = value => createPromiseThunk(GET_NEWS_LIST, `/News/list?symbol=${value}&count=10`);
-export const getNewsDetail = id => createPromiseThunk(GET_NEWS_DETAIL, `/News/detail?id=${id}`);
+export const getNewsList = value =>
+	createPromiseThunk(GET_NEWS_LIST, `http://antnews.azurewebsites.net/News/list?symbol=${value}&count=10`);
+export const getNewsDetail = id =>
+	createPromiseThunk(GET_NEWS_DETAIL, `http://antnews.azurewebsites.net/News/detail?id=${id}`);
 export const getStockChart = (value, range, interval) =>
-	createPromiseThunk(GET_STOCK_CHART, `/Stock/chart?symbol=${value}&range=${range}&interval=${interval}`);
-export const getStockSummary = value => createPromiseThunk(GET_STOCK_SUMMARY, `/Stock/summary?symbol=${value}`);
+	createPromiseThunk(
+		GET_STOCK_CHART,
+		`http://antnews.azurewebsites.net/Stock/chart?symbol=${value}&range=${range}&interval=${interval}`
+	);
+export const getStockSummary = value =>
+	createPromiseThunk(GET_STOCK_SUMMARY, `http://antnews.azurewebsites.net/Stock/summary?symbol=${value}`);
 
 export const initialState = {
 	newsList: {
