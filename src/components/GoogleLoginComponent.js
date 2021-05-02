@@ -31,7 +31,7 @@ function GoogleLoginComponent() {
 	if (!loginState)
 		return (
 			<div className="GoogleLoginComponent">
-				<span style={{ marginRight: '1rem' }}>로그인을 하시면 검색결과가 저장됩니다.</span>
+				<span style={{ marginRight: '1rem' }}>로그인을 하시면 검색 기록이 저장됩니다.</span>
 				<GoogleLogin
 					clientId="379175647400-vb7hlqes9vi20lach33v4o8quihmaauc.apps.googleusercontent.com"
 					buttonText="Google Login"
