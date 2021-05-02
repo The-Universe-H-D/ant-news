@@ -13,11 +13,10 @@ function SearchInput({ onGetApi, onSetXAxis }) {
 		setInput(targetValue);
 	};
 
-	const onKeyUp = async e => {
-		const targetValue = e.target.value;
-		if (targetValue !== '') {
+	const onAutoComplete = async input => {
+		if (input !== '') {
 			try {
-				await axios.get(`/Stock/search?keyword=${targetValue}`).then(function (res) {
+				await axios.get(`/Stock/search?keyword=${input}`).then(function (res) {
 					if (res.status === 200) {
 						setSymbol(res.data.stockCodes[0].symbol);
 						localStorage.setItem('inputValue', res.data.stockCodes[0].longname);
@@ -52,14 +51,17 @@ function SearchInput({ onGetApi, onSetXAxis }) {
 		localStorage.setItem('symbolValue', val2);
 		setItems([]);
 	};
+
 	useEffect(() => {
-		setInput(localStorage.getItem('inputValue'));
-		setSymbol(localStorage.getItem('symbolValue'));
-	}, []);
+		const { cancel, token } = axios.CancelToken.source();
+		const timeOutId = setTimeout(() => onAutoComplete(input, token), 500);
+		return () => cancel('No longer latest query') || clearTimeout(timeOutId);
+	}, [input]);
+
 	return (
 		<div className="SearchInput">
 			<form onSubmit={onSubmit}>
-				<input value={input} onChange={onChangeInput} onKeyUp={onKeyUp} ref={valueInput} />
+				<input value={input} onChange={onChangeInput} ref={valueInput} />
 				<button className="search-btn" type="submit">
 					검색
 				</button>
