@@ -15,13 +15,20 @@ function SearchInput({ onGetApi, onSetXAxis }) {
 	const onAutoComplete = async input => {
 		if (input !== '') {
 			try {
-				await axios.get(`http://antnews.azurewebsites.net/Stock/search?keyword=${input}`).then(function (res) {
-					if (res.status === 200) {
-						localStorage.setItem('inputValue', res.data.stockCodes[0].longname);
-						localStorage.setItem('symbolValue', res.data.stockCodes[0].symbol);
-						setItems(res.data.stockCodes);
-					}
-				});
+				const token =
+					'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2MjI4MTU4ODAsImlzcyI6IkFudE5ld3MiLCJhdWQiOiJBbnROZXdzIn0.Geb5fH5DrVXwPBU2lmetA5kALXU02mN3LgvebbTISK0';
+				const config = {
+					headers: { Authorization: `Bearer ${token}` }
+				};
+				await axios
+					.get(`http://antnews.azurewebsites.net/Stock/search?keyword=${input}`, config)
+					.then(function (res) {
+						if (res.status === 200) {
+							localStorage.setItem('inputValue', res.data.stockCodes[0].longname);
+							localStorage.setItem('symbolValue', res.data.stockCodes[0].symbol);
+							setItems(res.data.stockCodes);
+						}
+					});
 			} catch (e) {
 				console.log(e);
 			}

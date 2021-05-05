@@ -6,7 +6,12 @@ export const createPromiseThunk = (type, param, history) => {
 	const thunkCreator = async dispatch => {
 		try {
 			dispatch({ type });
-			const payload = await axios(param);
+			const token =
+				'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2MjI4MTU4ODAsImlzcyI6IkFudE5ld3MiLCJhdWQiOiJBbnROZXdzIn0.Geb5fH5DrVXwPBU2lmetA5kALXU02mN3LgvebbTISK0';
+			const config = {
+				headers: { Authorization: `Bearer ${token}` }
+			};
+			const payload = await axios(param, config);
 			dispatch({
 				type: SUCCESS,
 				payload: payload
