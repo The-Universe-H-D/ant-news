@@ -25,7 +25,11 @@
 		<title>AntNEWS</title>
 	</head>
 	<body>
-		<noscript>You need to enable JavaScript to run this app.</noscript>
+		<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+		<script>
+			Kakao.init('d4a227c9c6ffc7446f21bd17d1b6365b');
+			Kakao.isInitialized();
+		</script>
 		<div id="root"></div>
 		<!--
       This HTML file is a template.

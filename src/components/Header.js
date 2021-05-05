@@ -2,6 +2,7 @@ import React from 'react';
 import GoogleLoginComponent from './GoogleLoginComponent';
 import '../assets/scss/Header.scss';
 import LogoImg from './LogoImg';
+import KakaoLoginComponent from './KakaoLoginComponent';
 
 function Header() {
 	return (
@@ -9,6 +10,7 @@ function Header() {
 			<header>
 				<LogoImg />
 				<GoogleLoginComponent />
+				<KakaoLoginComponent />
 			</header>
 		</div>
 	);
