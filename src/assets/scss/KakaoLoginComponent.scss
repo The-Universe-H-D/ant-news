@@ -1,0 +1,22 @@
+@import './Common.scss';
+
+.KakaoLoginComponent {
+	width: 25%;
+	display: inline-flex;
+	align-items: center;
+
+	.kakao_login_btn {
+		cursor: pointer;
+		background: url('../img/kakao_login.png') center left;
+		background-size: cover;
+		display: inline-block;
+		color: black;
+		padding: 1.3rem;
+		border-radius: 2px;
+		border: 1px solid transparent;
+		font-size: 14px;
+		font-weight: 500;
+		width: 9rem;
+		box-shadow: black;
+	}
+}

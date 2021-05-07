@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import '../assets/scss/KakaoLoginComponent.scss';
 
 const { Kakao } = window;
 
@@ -40,13 +41,16 @@ function KakaoLoginComponent({ onLoginKakao, onLogoutKakao }) {
 		});
 	};
 	return (
-		<div>
+		<div className="KakaoLoginComponent">
 			{loginState ? (
-				<span>
-					{nickname}님 환영합니다. <button onClick={onLogOut}>카카오 로그아웃</button>
+				<span className="kakao_logout">
+					{nickname}님 환영합니다.{' '}
+					<button onClick={onLogOut} className="kakao_logout_btn">
+						카카오 로그아웃
+					</button>
 				</span>
 			) : (
-				<button onClick={loginWithKakao}>카카오 로그인</button>
+				<button onClick={loginWithKakao} className="kakao_login_btn"></button>
 			)}
 		</div>
 	);
