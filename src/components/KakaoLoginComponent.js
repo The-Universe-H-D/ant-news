@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 const { Kakao } = window;
 
-function KakaoLoginComponent() {
+function KakaoLoginComponent({ onLoginKakao, onLogoutKakao }) {
 	const [loginState, setLoginState] = useState(false);
 	const [nickname, setNickname] = useState('');
 	const loginWithKakao = () => {
@@ -15,6 +15,7 @@ function KakaoLoginComponent() {
 					success: function (res) {
 						setLoginState(true);
 						setNickname(res.properties.nickname);
+						onLoginKakao();
 					},
 					fail: function (error) {
 						console.log('login success, but failed to request user information: ' + JSON.stringify(error));
@@ -34,6 +35,7 @@ function KakaoLoginComponent() {
 		}
 		Kakao.Auth.logout(function () {
 			setLoginState(false);
+			onLogoutKakao();
 			console.log(Kakao.Auth.getAccessToken());
 		});
 	};

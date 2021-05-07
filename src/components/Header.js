@@ -4,13 +4,17 @@ import '../assets/scss/Header.scss';
 import LogoImg from './LogoImg';
 import KakaoLoginComponent from './KakaoLoginComponent';
 
-function Header() {
+function Header({ loginGoogle, loginKakao, onLoginGoogle, onLogoutGoogle, onLoginKakao, onLogoutKakao }) {
 	return (
 		<div>
 			<header>
 				<LogoImg />
-				<GoogleLoginComponent />
-				<KakaoLoginComponent />
+				{loginKakao === 'true' || (
+					<GoogleLoginComponent onLoginGoogle={onLoginGoogle} onLogoutGoogle={onLogoutGoogle} />
+				)}
+				{loginGoogle === 'true' || (
+					<KakaoLoginComponent onLoginKakao={onLoginKakao} onLogoutKakao={onLogoutKakao} />
+				)}
 			</header>
 		</div>
 	);

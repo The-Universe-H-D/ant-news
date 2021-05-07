@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
 import { GoogleLogin, GoogleLogout } from 'react-google-login';
 
-function GoogleLoginComponent() {
+function GoogleLoginComponent({ onLoginGoogle, onLogoutGoogle }) {
 	const userName = window.sessionStorage.getItem('userName') ? window.sessionStorage.getItem('userName') : '';
 	const [loginState, setLoginState] = useState(userName ? true : false);
 	const onLoginSuccess = res => {
 		console.log(res);
 		window.sessionStorage.setItem('userName', res.gt.Te);
 		setLoginState(true);
+		onLoginGoogle();
 	};
 	const onLoginFailure = res => {
 		console.log(res);
@@ -16,6 +17,7 @@ function GoogleLoginComponent() {
 		console.log(res);
 		window.sessionStorage.clear();
 		setLoginState(false);
+		onLogoutGoogle();
 	};
 	if (loginState)
 		return (
