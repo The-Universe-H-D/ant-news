@@ -27,7 +27,6 @@ export const getStockSummary = value =>
 	createPromiseThunk(GET_STOCK_SUMMARY, `http://antnews.azurewebsites.net/Stock/summary?symbol=${value}`);
 
 export const initialState = {
-	hasResult : false,
 	newsList: {
 		loading: false,
 		data: null,

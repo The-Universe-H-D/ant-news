@@ -3,7 +3,7 @@ import axios from 'axios';
 export const createPromiseThunk = (type, param, history) => {
 	const [SUCCESS, ERROR] = [`${type}_SUCCESS`, `${type}_ERROR`];
 
-	const thunkCreator = async (dispatch,getState) => {
+	const thunkCreator = async dispatch => {
 		try {
 			dispatch({ type });
 			const token =
@@ -12,11 +12,6 @@ export const createPromiseThunk = (type, param, history) => {
 				headers: { Authorization: `Bearer ${token}` }
 			};
 			const payload = await axios(param, config);
-			
-			if(payload.status === 200){
-				getState().getApiReducer.hasResult = true;				
-			}
-
 			dispatch({
 				type: SUCCESS,
 				payload: payload
