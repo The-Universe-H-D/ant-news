@@ -1,12 +1,9 @@
 import axios from 'axios';
 import React, { useEffect, useRef, useState } from 'react';
-import { useSelector } from 'react-redux';
 import '../assets/scss/SearchInput.scss';
-import { initialState } from '../modules/getAPI';
 import AutoComplete from './AutoComplete';
 
 function SearchInput({ onGetApi, onSetXAxis }) {
-	const { hasResult } = useSelector(state => state.getApiReducer || initialState);
 	const [input, setInput] = useState('');
 	const [items, setItems] = useState([]);
 
@@ -26,7 +23,7 @@ function SearchInput({ onGetApi, onSetXAxis }) {
 				await axios
 					.get(`http://antnews.azurewebsites.net/Stock/search?keyword=${input}`, config)
 					.then(function (res) {
-						if (res.status === 200) {							
+						if (res.status === 200) {
 							localStorage.setItem('inputValue', res.data.stockCodes[0].longname);
 							localStorage.setItem('symbolValue', res.data.stockCodes[0].symbol);
 							setItems(res.data.stockCodes);
@@ -40,7 +37,6 @@ function SearchInput({ onGetApi, onSetXAxis }) {
 	const onSubmit = e => {
 		e.preventDefault();
 		onGetApi(localStorage.getItem('symbolValue'), '1d');
-		
 	};
 	const onClick = e => {
 		const range = e.target.value;
@@ -74,42 +70,38 @@ function SearchInput({ onGetApi, onSetXAxis }) {
 					검색
 				</button>
 				<AutoComplete items={items} onlistClick={onlistClick} />
-				{					
-					hasResult ? <div className="rangeBtns">
-									<button type="button" onClick={onClick} value="1d">
-										1 day
-									</button>
-									<button type="button" onClick={onClick} value="5d">
-										5 day
-									</button>
-									<button type="button" onClick={onClick} value="1mo">
-										1 month
-									</button>
-									<button type="button" onClick={onClick} value="3mo">
-										3 month
-									</button>
-									<button type="button" onClick={onClick} value="6mo">
-										6 month
-									</button>
-									<button type="button" onClick={onClick} value="1y">
-										1 year
-									</button>
-									<button type="button" onClick={onClick} value="2y">
-										2 year
-									</button>
-									<button type="button" onClick={onClick} value="5y">
-										5 year
-									</button>
-									<button type="button" onClick={onClick} value="10y">
-										10 year
-									</button>
-									<button type="button" onClick={onClick} value="max">
-										max
-									</button>
-								</div>
-								: ""
-				}
-				
+				<div className="rangeBtns">
+					<button type="button" onClick={onClick} value="1d">
+						1 day
+					</button>
+					<button type="button" onClick={onClick} value="5d">
+						5 day
+					</button>
+					<button type="button" onClick={onClick} value="1mo">
+						1 month
+					</button>
+					<button type="button" onClick={onClick} value="3mo">
+						3 month
+					</button>
+					<button type="button" onClick={onClick} value="6mo">
+						6 month
+					</button>
+					<button type="button" onClick={onClick} value="1y">
+						1 year
+					</button>
+					<button type="button" onClick={onClick} value="2y">
+						2 year
+					</button>
+					<button type="button" onClick={onClick} value="5y">
+						5 year
+					</button>
+					<button type="button" onClick={onClick} value="10y">
+						10 year
+					</button>
+					<button type="button" onClick={onClick} value="max">
+						max
+					</button>
+				</div>
 			</form>
 		</div>
 	);
