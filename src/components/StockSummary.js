@@ -1,7 +1,11 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import '../assets/scss/StockSummary.scss';
+import { initialState } from '../modules/getAPI';
 
 function StockSummary({ summaryData }) {
+	const { stockChart } = useSelector(state => state.getApiReducer || initialState);
+	const symbol = stockChart.data ? stockChart.data.data.symbol : [];
 	const {
 		previousClose,
 		open,
@@ -26,6 +30,7 @@ function StockSummary({ summaryData }) {
 		<>
 			<div className="stock-name">
 				<b className="name">{name}</b>
+				<span className="symbol">{symbol}</span>
 				<span className="website">
 					<a href={website}>{website}</a>
 				</span>
