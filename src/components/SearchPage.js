@@ -8,12 +8,7 @@ import { useSelector } from 'react-redux';
 import { initialState } from '../modules/getAPI';
 
 function SearchPage({ onGetApi, onGetNewsDetail, onSetXAxis }) {
-	const { stockChart, stockSummary } = useSelector(state => state.getApiReducer || initialState);
-	const { XAxisDate } = useSelector(state => state.setGraphReducer);
-	const low = stockChart.data ? stockChart.data.data.low : [];
-	const high = stockChart.data ? stockChart.data.data.high : [];
-	const currency = stockChart.data ? stockChart.data.data.currency : [];
-	const dateTime = stockChart.data ? stockChart.data.data.datetime : [];
+	const { stockSummary } = useSelector(state => state.getApiReducer || initialState);
 	const summaryData = stockSummary.data ? stockSummary.data.data : [];
 	return (
 		<div className="SearchPage">
@@ -31,7 +26,7 @@ function SearchPage({ onGetApi, onGetNewsDetail, onSetXAxis }) {
 						<SearchInput onGetApi={onGetApi} onSetXAxis={onSetXAxis} />
 					</div>
 					<div className="sec-contents">
-						<Graph dateTime={dateTime} currency={currency} low={low} high={high} XAxisDate={XAxisDate} />
+						<Graph />
 						<StockSummary summaryData={summaryData} />
 						<NewsList onGetNewsDetail={onGetNewsDetail} />
 					</div>

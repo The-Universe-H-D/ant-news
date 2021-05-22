@@ -1,7 +1,15 @@
 import React, { useEffect } from 'react';
 import { Line } from 'react-chartjs-2';
+import { useSelector } from 'react-redux';
+import { initialState } from '../modules/getAPI';
 
-function Graph({ dateTime, currency, low, high, XAxisDate }) {
+function Graph() {
+	const { stockChart } = useSelector(state => state.getApiReducer || initialState);
+	const { XAxisDate } = useSelector(state => state.setGraphReducer);
+	const low = stockChart.data ? stockChart.data.data.low : [];
+	const high = stockChart.data ? stockChart.data.data.high : [];
+	const currency = stockChart.data ? stockChart.data.data.currency : [];
+	const dateTime = stockChart.data ? stockChart.data.data.datetime : [];
 	const xDate = dateTime.map(ele => ele.slice(0, 8));
 	const xTime = dateTime.map(ele => ele.slice(8, 14));
 	const calculatedAve = [];
