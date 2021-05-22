@@ -3,18 +3,18 @@ import axios from 'axios';
 export const createPromiseThunk = (type, param, history) => {
 	const [SUCCESS, ERROR] = [`${type}_SUCCESS`, `${type}_ERROR`];
 
-	const thunkCreator = async (dispatch,getState) => {
+	const thunkCreator = async (dispatch, getState) => {
 		try {
 			dispatch({ type });
-			const token =
-				'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2MjI4MTU4ODAsImlzcyI6IkFudE5ld3MiLCJhdWQiOiJBbnROZXdzIn0.Geb5fH5DrVXwPBU2lmetA5kALXU02mN3LgvebbTISK0';
+
+			const token = process.env.REACT_APP_API_KEY;
 			const config = {
 				headers: { Authorization: `Bearer ${token}` }
 			};
 			const payload = await axios(param, config);
-			
-			if(payload.status === 200){
-				getState().getApiReducer.hasResult = true;				
+
+			if (payload.status === 200) {
+				getState().getApiReducer.hasResult = true;
 			}
 
 			dispatch({
