@@ -6,7 +6,7 @@ function GoogleLoginComponent({ onLoginGoogle, onLogoutGoogle }) {
 	const [loginState, setLoginState] = useState(userName ? true : false);
 	const onLoginSuccess = res => {
 		console.log(res);
-		window.sessionStorage.setItem('userName', res.gt.Te);
+		window.sessionStorage.setItem('userName', res.profileObj.name);
 		setLoginState(true);
 		onLoginGoogle();
 	};
@@ -19,15 +19,12 @@ function GoogleLoginComponent({ onLoginGoogle, onLogoutGoogle }) {
 		setLoginState(false);
 		onLogoutGoogle();
 	};
+	const clientId = process.env.REACT_APP_GOOGLE_CLIENT_ID;
 	if (loginState)
 		return (
 			<div className="GoogleLoginComponent">
 				<b className="user-name">{userName}님 환영합니다.</b>
-				<GoogleLogout
-					clientId="379175647400-vb7hlqes9vi20lach33v4o8quihmaauc.apps.googleusercontent.com"
-					buttonText="Logout"
-					onLogoutSuccess={onLogoutSuccess}
-				/>
+				<GoogleLogout clientId={clientId} buttonText="Logout" onLogoutSuccess={onLogoutSuccess} />
 			</div>
 		);
 	if (!loginState)
@@ -35,7 +32,7 @@ function GoogleLoginComponent({ onLoginGoogle, onLogoutGoogle }) {
 			<div className="GoogleLoginComponent">
 				<span style={{ marginRight: '1rem' }}>로그인을 하시면 검색 기록이 저장됩니다.</span>
 				<GoogleLogin
-					clientId="379175647400-vb7hlqes9vi20lach33v4o8quihmaauc.apps.googleusercontent.com"
+					clientId={clientId}
 					buttonText="Login"
 					onSuccess={onLoginSuccess}
 					onFailure={onLoginFailure}
