@@ -6,8 +6,8 @@ import { loginGoogleAsync, loginKakaoAsync, logoutGoogleAsync, logoutKakaoAsync 
 function HomeContainer() {
 	const { loginGoogle, loginKakao } = useSelector(state => state.setLoginReducer);
 	const dispatch = useDispatch();
-	const onLoginGoogle = () => {
-		dispatch(loginGoogleAsync());
+	const onLoginGoogle = res => {
+		dispatch(loginGoogleAsync(res));
 	};
 	const onLogoutGoogle = () => {
 		dispatch(logoutGoogleAsync());

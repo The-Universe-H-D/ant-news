@@ -9,10 +9,10 @@ function Header({ loginGoogle, loginKakao, onLoginGoogle, onLogoutGoogle, onLogi
 		<div>
 			<header>
 				<LogoImg />
-				{loginKakao === 'true' || (
+				{loginKakao.state === 'true' || (
 					<GoogleLoginComponent onLoginGoogle={onLoginGoogle} onLogoutGoogle={onLogoutGoogle} />
 				)}
-				{loginGoogle === 'true' || (
+				{loginGoogle.state === 'true' || (
 					<KakaoLoginComponent onLoginKakao={onLoginKakao} onLogoutKakao={onLogoutKakao} />
 				)}
 			</header>
