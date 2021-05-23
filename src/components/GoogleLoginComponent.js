@@ -1,21 +1,18 @@
 import React, { useState } from 'react';
 import { GoogleLogin, GoogleLogout } from 'react-google-login';
+import { useSelector } from 'react-redux';
 
 function GoogleLoginComponent({ onLoginGoogle, onLogoutGoogle }) {
-	const userName = window.sessionStorage.getItem('userName') ? window.sessionStorage.getItem('userName') : '';
-	const [loginState, setLoginState] = useState(userName ? true : false);
+	const { name } = useSelector(state => state.setLoginReducer.loginGoogle || state.setLoginReducer.loginKakao);
+	const [loginState, setLoginState] = useState(false);
 	const onLoginSuccess = res => {
-		console.log(res);
-		window.sessionStorage.setItem('userName', res.profileObj.name);
 		setLoginState(true);
-		onLoginGoogle();
+		onLoginGoogle(res);
 	};
 	const onLoginFailure = res => {
 		console.log(res);
 	};
-	const onLogoutSuccess = res => {
-		console.log(res);
-		window.sessionStorage.clear();
+	const onLogoutSuccess = () => {
 		setLoginState(false);
 		onLogoutGoogle();
 	};
@@ -23,7 +20,7 @@ function GoogleLoginComponent({ onLoginGoogle, onLogoutGoogle }) {
 	if (loginState)
 		return (
 			<div className="GoogleLoginComponent">
-				<b className="user-name">{userName}님 환영합니다.</b>
+				<b className="user-name">{name}님 환영합니다.</b>
 				<GoogleLogout clientId={clientId} buttonText="Logout" onLogoutSuccess={onLogoutSuccess} />
 			</div>
 		);
