@@ -10,7 +10,7 @@ export const logoutGoogle = () => ({ type: LOGOUT_GOOGLE });
 export const loginKakao = () => ({ type: LOGIN_KAKAO });
 export const logoutKakao = () => ({ type: LOGOUT_KAKAO });
 
-export const loginGoogleAsync = res => async (dispatch, getState) => {
+export const loginGoogleAsync = res => async dispatch => {
 	const { googleId, name, email } = res.profileObj;
 	dispatch(loginGoogle(googleId, name, email));
 	try {
@@ -61,7 +61,7 @@ export default function setLoginReducer(state = initialState, action) {
 				...state,
 				loginGoogle: {
 					state: 'true',
-					id: action.googleId,
+					id: action.id,
 					name: action.name,
 					email: action.email
 				}
