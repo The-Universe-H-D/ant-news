@@ -1,3 +1,4 @@
+import axios from 'axios';
 import { createPromiseThunk, handleAsyncActions } from '../lib/asyncUtils';
 
 const GET_NEWS_LIST = 'getAPI/GET_NEWS_LIST';
@@ -14,6 +15,22 @@ const GET_STOCK_SUMMARY = 'getAPI/GET_STOCK_SUMMARY';
 const GET_STOCK_SUMMARY_SUCCESS = 'getAPI/GET_STOCK_SUMMARY_SUCCESS';
 const GET_STOCK_SUMMARY_ERROR = 'getAPI/GET_STOCK_SUMMARY_ERROR';
 
+const GET_SEARCH_HISTORY = 'getAPI/GET_SEARCH_HISTORY';
+
+export const getSearchHistory = () => ({ type: GET_SEARCH_HISTORY });
+export const getSearchHistoryAsync = async (id, value) => {
+	try {
+		const token = process.env.REACT_APP_API_KEY;
+		const config = {
+			headers: { Authorization: `Bearer ${token}` }
+		};
+		const payload = await axios.get(`http://antnews.azurewebsites.net/History/add/${id}/${value}`, config);
+		console.log(payload);
+	} catch (e) {
+		console.log(e);
+	}
+};
+
 export const getNewsList = value =>
 	createPromiseThunk(GET_NEWS_LIST, `http://antnews.azurewebsites.net/News/list?symbol=${value}&count=10`);
 export const getNewsDetail = id =>
@@ -27,7 +44,7 @@ export const getStockSummary = value =>
 	createPromiseThunk(GET_STOCK_SUMMARY, `http://antnews.azurewebsites.net/Stock/summary?symbol=${value}`);
 
 export const initialState = {
-	hasResult : false,
+	hasResult: false,
 	newsList: {
 		loading: false,
 		data: null,

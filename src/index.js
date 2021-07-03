@@ -18,7 +18,7 @@ const store = createStore(
 	rootReducer,
 	composeWithDevTools(applyMiddleware(ReduxThunk.withExtraArgument({ history: customHistory }), logger))
 );
-
+require('dotenv').config();
 ReactDOM.render(
 	<React.StrictMode>
 		<Router history={customHistory}>

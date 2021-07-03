@@ -1,15 +1,33 @@
+import axios from 'axios';
+
 const LOGIN_GOOGLE = 'setLogin/LOGIN_GOOGLE';
 const LOGOUT_GOOGLE = 'setLogin/LOGOUT_GOOGLE';
 const LOGIN_KAKAO = 'setLogin/LOGIN_KAKAO';
 const LOGOUT_KAKAO = 'setLogin/LOGOUT_KAKAO';
 
-export const loginGoogle = () => ({ type: LOGIN_GOOGLE });
+export const loginGoogle = (id, name, email) => ({ type: LOGIN_GOOGLE, id, name, email });
 export const logoutGoogle = () => ({ type: LOGOUT_GOOGLE });
 export const loginKakao = () => ({ type: LOGIN_KAKAO });
 export const logoutKakao = () => ({ type: LOGOUT_KAKAO });
 
-export const loginGoogleAsync = () => dispatch => {
-	dispatch(loginGoogle());
+export const loginGoogleAsync = res => async dispatch => {
+	const { googleId, name, email } = res.profileObj;
+	dispatch(loginGoogle(googleId, name, email));
+	try {
+		const config = {
+			headers: { Authorization: `Bearer ${process.env.REACT_APP_API_KEY}` }
+		};
+		const payload = await axios.post(
+			'http://antnews.azurewebsites.net/User/sign/in',
+			{
+				id: googleId,
+				name,
+				email
+			},
+			config
+		);
+		console.log(payload.data);
+	} catch (e) {}
 };
 export const logoutGoogleAsync = () => dispatch => {
 	dispatch(logoutGoogle());
@@ -22,8 +40,18 @@ export const logoutKakaoAsync = () => dispatch => {
 };
 
 export const initialState = {
-	loginGoogle: 'false',
-	loginKakao: 'false'
+	loginGoogle: {
+		state: 'false',
+		id: '',
+		name: '',
+		email: ''
+	},
+	loginKakao: {
+		state: 'false',
+		id: '',
+		name: '',
+		email: ''
+	}
 };
 
 export default function setLoginReducer(state = initialState, action) {
@@ -31,22 +59,36 @@ export default function setLoginReducer(state = initialState, action) {
 		case LOGIN_GOOGLE:
 			return {
 				...state,
-				loginGoogle: 'true'
+				loginGoogle: {
+					state: 'true',
+					id: action.id,
+					name: action.name,
+					email: action.email
+				}
 			};
 		case LOGOUT_GOOGLE:
 			return {
 				...state,
-				loginGoogle: 'false'
+				loginGoogle: {
+					state: 'false',
+					id: '',
+					name: '',
+					email: ''
+				}
 			};
 		case LOGIN_KAKAO:
 			return {
 				...state,
-				loginKakao: 'true'
+				loginKakao: {
+					state: 'true'
+				}
 			};
 		case LOGOUT_KAKAO:
 			return {
 				...state,
-				loginKakao: 'false'
+				loginKakao: {
+					state: 'false'
+				}
 			};
 		default:
 			return state;

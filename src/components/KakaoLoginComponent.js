@@ -37,7 +37,6 @@ function KakaoLoginComponent({ onLoginKakao, onLogoutKakao }) {
 		Kakao.Auth.logout(function () {
 			setLoginState(false);
 			onLogoutKakao();
-			console.log(Kakao.Auth.getAccessToken());
 		});
 	};
 	return (
