@@ -4,8 +4,12 @@ import '../assets/scss/SearchPage.scss';
 import NewsList from './NewsList';
 import Graph from './Graph';
 import StockSummary from './StockSummary';
+import { useSelector } from 'react-redux';
+import { initialState } from '../modules/getAPI';
 
-function SearchPage({ onGetApi, dateTime, summaryData, currency, onGetNewsDetail, low, high, XAxisDate, onSetXAxis }) {
+function SearchPage({ onGetApi, onGetNewsDetail, onSetXAxis }) {
+	const { stockSummary } = useSelector(state => state.getApiReducer || initialState);
+	const summaryData = stockSummary.data ? stockSummary.data.data : [];
 	return (
 		<div className="SearchPage">
 			<div className="container">
@@ -22,7 +26,7 @@ function SearchPage({ onGetApi, dateTime, summaryData, currency, onGetNewsDetail
 						<SearchInput onGetApi={onGetApi} onSetXAxis={onSetXAxis} />
 					</div>
 					<div className="sec-contents">
-						<Graph dateTime={dateTime} currency={currency} low={low} high={high} XAxisDate={XAxisDate} />
+						<Graph />
 						<StockSummary summaryData={summaryData} />
 						<NewsList onGetNewsDetail={onGetNewsDetail} />
 					</div>

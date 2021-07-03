@@ -44,7 +44,7 @@ function KakaoLoginComponent({ onLoginKakao, onLogoutKakao }) {
 		<div className="KakaoLoginComponent">
 			{loginState ? (
 				<span className="kakao_logout">
-					{nickname}님 환영합니다.{' '}
+					{nickname}님 환영합니다.
 					<button onClick={onLogOut} className="kakao_logout_btn">
 						카카오 로그아웃
 					</button>
