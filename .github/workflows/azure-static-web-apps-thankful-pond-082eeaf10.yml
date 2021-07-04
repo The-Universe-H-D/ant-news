@@ -13,15 +13,20 @@ jobs:
   build_and_deploy_job:
     if: github.event_name == 'push' || (github.event_name == 'pull_request' && github.event.action != 'closed')
     runs-on: ubuntu-latest
-    env:
-      REACT_APP_API_KEY: ${{secrets.REACT_APP_API_KEY}}
-      REACT_APP_GOOGLE_CLIENT_ID: ${{secrets.REACT_APP_GOOGLE_CLIENT_ID}}
-      REACT_APP_API_DOMAIN: ${{secrets.REACT_APP_API_DOMAIN}}
+    
     name: Build and Deploy Job
     steps:
       - uses: actions/checkout@v2
         with:
           submodules: true
+          
+      - name: Create .env file
+        uses: SpicyPizza/create-envfile@v1.1
+        with:
+          REACT_APP_API_KEY: ${{secrets.REACT_APP_API_KEY}}
+          REACT_APP_GOOGLE_CLIENT_ID: ${{secrets.REACT_APP_GOOGLE_CLIENT_ID}}
+          REACT_APP_API_DOMAIN: ${{secrets.REACT_APP_API_DOMAIN}}
+    
       - name: Build And Deploy
         id: builddeploy
         uses: Azure/static-web-apps-deploy@v1
