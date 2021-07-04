@@ -27,6 +27,7 @@ function SearchInput({ onGetApi, onSetXAxis }) {
 				await axios
 					.get(`${process.env.REACT_APP_API_DOMAIN}/Stock/search?keyword=${input}`, config)
 					.then(function (res) {
+						console.log(res)
 						if (res.status === 200) {
 							localStorage.setItem('inputValue', res.data.stockCodes[0].longname);
 							localStorage.setItem('symbolValue', res.data.stockCodes[0].symbol);
