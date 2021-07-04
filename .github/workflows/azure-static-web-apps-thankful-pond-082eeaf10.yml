@@ -19,16 +19,13 @@ jobs:
       - uses: actions/checkout@v2
         with:
           submodules: true
-          
-      - name: Create .env file
-        uses: SpicyPizza/create-envfile@v1.1
-        with:
-          file_name: .env.development
-          directory: /          
-        env:
-          REACT_APP_API_KEY: ${{secrets.REACT_APP_API_KEY}}
-          REACT_APP_GOOGLE_CLIENT_ID: ${{secrets.REACT_APP_GOOGLE_CLIENT_ID}}
-          REACT_APP_API_DOMAIN: ${{secrets.REACT_APP_API_DOMAIN}}       
+
+      - name: Make env file
+        run: |
+          touch .env.development
+          echo REACT_APP_API_KEY=${{ secrets.REACT_APP_API_KEY }} >> .env.development
+          echo REACT_APP_GOOGLE_CLIENT_ID=${{ secrets.REACT_APP_GOOGLE_CLIENT_ID }} >> .env.development
+          echo REACT_APP_API_DOMAIN=${{secrets.REACT_APP_API_DOMAIN}} >> .env.development         
     
       - name: Build And Deploy
         id: builddeploy
