@@ -25,14 +25,10 @@ jobs:
         with:
           file_name: .env.development
           directory: /          
-
-      - name: Write env file
-        uses: zxyle/write-env-action@v2
-        with:          
-          env_file_content: 
-            REACT_APP_API_KEY: ${{secrets.REACT_APP_API_KEY}}
-            REACT_APP_GOOGLE_CLIENT_ID: ${{secrets.REACT_APP_GOOGLE_CLIENT_ID}}
-            REACT_APP_API_DOMAIN: ${{secrets.REACT_APP_API_DOMAIN}}  
+        env:
+          REACT_APP_API_KEY: ${{secrets.REACT_APP_API_KEY}}
+          REACT_APP_GOOGLE_CLIENT_ID: ${{secrets.REACT_APP_GOOGLE_CLIENT_ID}}
+          REACT_APP_API_DOMAIN: ${{secrets.REACT_APP_API_DOMAIN}}       
     
       - name: Build And Deploy
         id: builddeploy
