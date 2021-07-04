@@ -24,6 +24,7 @@ jobs:
         uses: SpicyPizza/create-envfile@v1.1
         with:
           file_name: .env.development
+          directory: /
           REACT_APP_API_KEY: ${{secrets.REACT_APP_API_KEY}}
           REACT_APP_GOOGLE_CLIENT_ID: ${{secrets.REACT_APP_GOOGLE_CLIENT_ID}}
           REACT_APP_API_DOMAIN: ${{secrets.REACT_APP_API_DOMAIN}}
