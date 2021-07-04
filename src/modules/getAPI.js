@@ -24,7 +24,7 @@ export const getSearchHistoryAsync = async (id, value) => {
 		const config = {
 			headers: { Authorization: `Bearer ${token}` }
 		};
-		const payload = await axios.get(`http://antnews.azurewebsites.net/History/add/${id}/${value}`, config);
+		const payload = await axios.get(`${process.env.REACT_APP_API_DOMAIN}/History/add/${id}/${value}`, config);
 		console.log(payload);
 	} catch (e) {
 		console.log(e);
@@ -32,16 +32,16 @@ export const getSearchHistoryAsync = async (id, value) => {
 };
 
 export const getNewsList = value =>
-	createPromiseThunk(GET_NEWS_LIST, `http://antnews.azurewebsites.net/News/list?symbol=${value}&count=10`);
+	createPromiseThunk(GET_NEWS_LIST, `${process.env.REACT_APP_API_DOMAIN}/News/list?symbol=${value}&count=10`);
 export const getNewsDetail = id =>
-	createPromiseThunk(GET_NEWS_DETAIL, `http://antnews.azurewebsites.net/News/detail?id=${id}`);
+	createPromiseThunk(GET_NEWS_DETAIL, `${process.env.REACT_APP_API_DOMAIN}/News/detail?id=${id}`);
 export const getStockChart = (value, range, interval) =>
 	createPromiseThunk(
 		GET_STOCK_CHART,
-		`http://antnews.azurewebsites.net/Stock/chart?symbol=${value}&range=${range}&interval=${interval}`
+		`${process.env.REACT_APP_API_DOMAIN}/Stock/chart?symbol=${value}&range=${range}&interval=${interval}`
 	);
 export const getStockSummary = value =>
-	createPromiseThunk(GET_STOCK_SUMMARY, `http://antnews.azurewebsites.net/Stock/summary?symbol=${value}`);
+	createPromiseThunk(GET_STOCK_SUMMARY, `${process.env.REACT_APP_API_DOMAIN}/Stock/summary?symbol=${value}`);
 
 export const initialState = {
 	hasResult: false,

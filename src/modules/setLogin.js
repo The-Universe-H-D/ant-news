@@ -18,7 +18,7 @@ export const loginGoogleAsync = res => async dispatch => {
 			headers: { Authorization: `Bearer ${process.env.REACT_APP_API_KEY}` }
 		};
 		const payload = await axios.post(
-			'http://antnews.azurewebsites.net/User/sign/in',
+			'${process.env.REACT_APP_API_DOMAIN}/User/sign/in',
 			{
 				id: googleId,
 				name,

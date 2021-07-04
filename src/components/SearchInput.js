@@ -20,13 +20,12 @@ function SearchInput({ onGetApi, onSetXAxis }) {
 	const onAutoComplete = async input => {
 		if (input !== '') {
 			try {
-				const token =
-					'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2MjI4MTU4ODAsImlzcyI6IkFudE5ld3MiLCJhdWQiOiJBbnROZXdzIn0.Geb5fH5DrVXwPBU2lmetA5kALXU02mN3LgvebbTISK0';
+				const token = process.env.REACT_APP_API_KEY;
 				const config = {
 					headers: { Authorization: `Bearer ${token}` }
 				};
 				await axios
-					.get(`http://antnews.azurewebsites.net/Stock/search?keyword=${input}`, config)
+					.get(`${process.env.REACT_APP_API_DOMAIN}/Stock/search?keyword=${input}`, config)
 					.then(function (res) {
 						if (res.status === 200) {
 							localStorage.setItem('inputValue', res.data.stockCodes[0].longname);
