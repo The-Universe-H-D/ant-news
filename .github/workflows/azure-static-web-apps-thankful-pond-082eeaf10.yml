@@ -22,10 +22,10 @@ jobs:
 
       - name: Make env file
         run: |
-          touch /.env.development
-          echo REACT_APP_API_KEY=${{ secrets.REACT_APP_API_KEY }} >> /.env.development
-          echo REACT_APP_GOOGLE_CLIENT_ID=${{ secrets.REACT_APP_GOOGLE_CLIENT_ID }} >> /.env.development
-          echo REACT_APP_API_DOMAIN=${{secrets.REACT_APP_API_DOMAIN}} >> /.env.development      
+          touch .env.production
+          echo REACT_APP_API_KEY=${{ secrets.REACT_APP_API_KEY }} >> .env.production
+          echo REACT_APP_GOOGLE_CLIENT_ID=${{ secrets.REACT_APP_GOOGLE_CLIENT_ID }} >> .env.production
+          echo REACT_APP_API_DOMAIN=${{secrets.REACT_APP_API_DOMAIN}} >> .env.production      
     
       - name: Build And Deploy
         id: builddeploy
