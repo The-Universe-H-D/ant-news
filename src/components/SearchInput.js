@@ -28,6 +28,7 @@ function SearchInput({ onGetApi, onSetXAxis }) {
 					.get(`${process.env.REACT_APP_API_DOMAIN}/Stock/search?keyword=${input}`, config)
 					.then(function (res) {
 						console.log(res)
+						console.log(process.env.REACT_APP_API_DOMAIN)
 						if (res.status === 200) {
 							localStorage.setItem('inputValue', res.data.stockCodes[0].longname);
 							localStorage.setItem('symbolValue', res.data.stockCodes[0].symbol);
